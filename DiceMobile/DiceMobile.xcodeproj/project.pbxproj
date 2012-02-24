@@ -1,0 +1,331 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3FDCF56214F7F74800FB639B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56114F7F74800FB639B /* UIKit.framework */; };
+		3FDCF56414F7F74800FB639B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56314F7F74800FB639B /* Foundation.framework */; };
+		3FDCF56614F7F74800FB639B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56514F7F74800FB639B /* CoreGraphics.framework */; };
+		3FDCF56814F7F74800FB639B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56714F7F74800FB639B /* GLKit.framework */; };
+		3FDCF56A14F7F74800FB639B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56914F7F74800FB639B /* OpenGLES.framework */; };
+		3FDCF57014F7F74800FB639B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FDCF56E14F7F74800FB639B /* InfoPlist.strings */; };
+		3FDCF57214F7F74800FB639B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCF57114F7F74800FB639B /* main.m */; };
+		3FDCF57614F7F74800FB639B /* DMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCF57514F7F74800FB639B /* DMAppDelegate.m */; };
+		3FDCF57914F7F74800FB639B /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FDCF57714F7F74800FB639B /* MainStoryboard_iPhone.storyboard */; };
+		3FDCF57C14F7F74800FB639B /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FDCF57A14F7F74800FB639B /* MainStoryboard_iPad.storyboard */; };
+		3FDCF58314F7F74800FB639B /* DMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCF58214F7F74800FB639B /* DMViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3FDCF55D14F7F74800FB639B /* DiceMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FDCF56114F7F74800FB639B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3FDCF56314F7F74800FB639B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3FDCF56514F7F74800FB639B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3FDCF56714F7F74800FB639B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		3FDCF56914F7F74800FB639B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3FDCF56D14F7F74800FB639B /* DiceMobile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DiceMobile-Info.plist"; sourceTree = "<group>"; };
+		3FDCF56F14F7F74800FB639B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3FDCF57114F7F74800FB639B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3FDCF57314F7F74800FB639B /* DiceMobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiceMobile-Prefix.pch"; sourceTree = "<group>"; };
+		3FDCF57414F7F74800FB639B /* DMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMAppDelegate.h; sourceTree = "<group>"; };
+		3FDCF57514F7F74800FB639B /* DMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMAppDelegate.m; sourceTree = "<group>"; };
+		3FDCF57814F7F74800FB639B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		3FDCF57B14F7F74800FB639B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		3FDCF58114F7F74800FB639B /* DMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMViewController.h; sourceTree = "<group>"; };
+		3FDCF58214F7F74800FB639B /* DMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3FDCF55A14F7F74800FB639B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FDCF56214F7F74800FB639B /* UIKit.framework in Frameworks */,
+				3FDCF56414F7F74800FB639B /* Foundation.framework in Frameworks */,
+				3FDCF56614F7F74800FB639B /* CoreGraphics.framework in Frameworks */,
+				3FDCF56814F7F74800FB639B /* GLKit.framework in Frameworks */,
+				3FDCF56A14F7F74800FB639B /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3FDCF55214F7F74700FB639B = {
+			isa = PBXGroup;
+			children = (
+				3FDCF56B14F7F74800FB639B /* DiceMobile */,
+				3FDCF56014F7F74800FB639B /* Frameworks */,
+				3FDCF55E14F7F74800FB639B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3FDCF55E14F7F74800FB639B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3FDCF55D14F7F74800FB639B /* DiceMobile.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3FDCF56014F7F74800FB639B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FDCF56114F7F74800FB639B /* UIKit.framework */,
+				3FDCF56314F7F74800FB639B /* Foundation.framework */,
+				3FDCF56514F7F74800FB639B /* CoreGraphics.framework */,
+				3FDCF56714F7F74800FB639B /* GLKit.framework */,
+				3FDCF56914F7F74800FB639B /* OpenGLES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3FDCF56B14F7F74800FB639B /* DiceMobile */ = {
+			isa = PBXGroup;
+			children = (
+				3FDCF58914F7F7F100FB639B /* App Core */,
+				3FDCF58B14F7F83C00FB639B /* GL View */,
+				3FDCF58A14F7F82700FB639B /* Ressources */,
+				3FDCF56C14F7F74800FB639B /* Supporting Files */,
+			);
+			path = DiceMobile;
+			sourceTree = "<group>";
+		};
+		3FDCF56C14F7F74800FB639B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3FDCF56D14F7F74800FB639B /* DiceMobile-Info.plist */,
+				3FDCF56E14F7F74800FB639B /* InfoPlist.strings */,
+				3FDCF57314F7F74800FB639B /* DiceMobile-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3FDCF58914F7F7F100FB639B /* App Core */ = {
+			isa = PBXGroup;
+			children = (
+				3FDCF57114F7F74800FB639B /* main.m */,
+				3FDCF57414F7F74800FB639B /* DMAppDelegate.h */,
+				3FDCF57514F7F74800FB639B /* DMAppDelegate.m */,
+				3FDCF57714F7F74800FB639B /* MainStoryboard_iPhone.storyboard */,
+				3FDCF57A14F7F74800FB639B /* MainStoryboard_iPad.storyboard */,
+			);
+			name = "App Core";
+			sourceTree = "<group>";
+		};
+		3FDCF58A14F7F82700FB639B /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Ressources;
+			sourceTree = "<group>";
+		};
+		3FDCF58B14F7F83C00FB639B /* GL View */ = {
+			isa = PBXGroup;
+			children = (
+				3FDCF58114F7F74800FB639B /* DMViewController.h */,
+				3FDCF58214F7F74800FB639B /* DMViewController.m */,
+			);
+			name = "GL View";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3FDCF55C14F7F74800FB639B /* DiceMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FDCF58614F7F74800FB639B /* Build configuration list for PBXNativeTarget "DiceMobile" */;
+			buildPhases = (
+				3FDCF55914F7F74800FB639B /* Sources */,
+				3FDCF55A14F7F74800FB639B /* Frameworks */,
+				3FDCF55B14F7F74800FB639B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DiceMobile;
+			productName = DiceMobile;
+			productReference = 3FDCF55D14F7F74800FB639B /* DiceMobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3FDCF55414F7F74700FB639B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DM;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Leonhard Lichtschlag";
+			};
+			buildConfigurationList = 3FDCF55714F7F74700FB639B /* Build configuration list for PBXProject "DiceMobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3FDCF55214F7F74700FB639B;
+			productRefGroup = 3FDCF55E14F7F74800FB639B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3FDCF55C14F7F74800FB639B /* DiceMobile */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3FDCF55B14F7F74800FB639B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FDCF57014F7F74800FB639B /* InfoPlist.strings in Resources */,
+				3FDCF57914F7F74800FB639B /* MainStoryboard_iPhone.storyboard in Resources */,
+				3FDCF57C14F7F74800FB639B /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3FDCF55914F7F74800FB639B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FDCF57214F7F74800FB639B /* main.m in Sources */,
+				3FDCF57614F7F74800FB639B /* DMAppDelegate.m in Sources */,
+				3FDCF58314F7F74800FB639B /* DMViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3FDCF56E14F7F74800FB639B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FDCF56F14F7F74800FB639B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3FDCF57714F7F74800FB639B /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FDCF57814F7F74800FB639B /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		3FDCF57A14F7F74800FB639B /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FDCF57B14F7F74800FB639B /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3FDCF58414F7F74800FB639B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3FDCF58514F7F74800FB639B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3FDCF58714F7F74800FB639B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiceMobile/DiceMobile-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "DiceMobile/DiceMobile-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3FDCF58814F7F74800FB639B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiceMobile/DiceMobile-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "DiceMobile/DiceMobile-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3FDCF55714F7F74700FB639B /* Build configuration list for PBXProject "DiceMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FDCF58414F7F74800FB639B /* Debug */,
+				3FDCF58514F7F74800FB639B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3FDCF58614F7F74800FB639B /* Build configuration list for PBXNativeTarget "DiceMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FDCF58714F7F74800FB639B /* Debug */,
+				3FDCF58814F7F74800FB639B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3FDCF55414F7F74700FB639B /* Project object */;
+}
