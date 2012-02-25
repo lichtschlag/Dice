@@ -489,7 +489,10 @@
 		3FDCF55214F7F74700FB639B = {
 			isa = PBXGroup;
 			children = (
-				3FDCF56B14F7F74800FB639B /* DiceMobile */,
+				3FDCF58914F7F7F100FB639B /* App Core */,
+				3FDCF58B14F7F83C00FB639B /* GL View */,
+				3FDCF58A14F7F82700FB639B /* Ressources */,
+				3FDCF56C14F7F74800FB639B /* Supporting Files */,
 				3FDCF56014F7F74800FB639B /* Frameworks */,
 				3FDCF55E14F7F74800FB639B /* Products */,
 			);
@@ -516,17 +519,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3FDCF56B14F7F74800FB639B /* DiceMobile */ = {
-			isa = PBXGroup;
-			children = (
-				3FDCF58914F7F7F100FB639B /* App Core */,
-				3FDCF58B14F7F83C00FB639B /* GL View */,
-				3FDCF58A14F7F82700FB639B /* Ressources */,
-				3FDCF56C14F7F74800FB639B /* Supporting Files */,
-			);
-			path = DiceMobile;
-			sourceTree = "<group>";
-		};
 		3FDCF56C14F7F74800FB639B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +527,7 @@
 				3FDCF57314F7F74800FB639B /* DiceMobile-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = DiceMobile;
 			sourceTree = "<group>";
 		};
 		3FDCF58914F7F7F100FB639B /* App Core */ = {
@@ -547,6 +540,7 @@
 				3FDCF57A14F7F74800FB639B /* MainStoryboard_iPad.storyboard */,
 			);
 			name = "App Core";
+			path = DiceMobile;
 			sourceTree = "<group>";
 		};
 		3FDCF58A14F7F82700FB639B /* Ressources */ = {
@@ -554,6 +548,7 @@
 			children = (
 			);
 			name = Ressources;
+			path = DiceMobile;
 			sourceTree = "<group>";
 		};
 		3FDCF58B14F7F83C00FB639B /* GL View */ = {
@@ -563,6 +558,7 @@
 				3FDCF58214F7F74800FB639B /* DMViewController.mm */,
 			);
 			name = "GL View";
+			path = DiceMobile;
 			sourceTree = "<group>";
 		};
 		3FDCF58C14F820C100FB639B /* Bullet */ = {
@@ -1307,6 +1303,7 @@
 				3FDCF58814F7F74800FB639B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
