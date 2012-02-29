@@ -402,6 +402,10 @@ GLfloat gCubeVertexData[6*6*8] =
 		glDrawArrays(GL_TRIANGLES, 0, 6*6);
 	}
 	glPopGroupMarkerEXT();
+	
+	// Discard the depth buffer
+    const GLenum discards[]  = {GL_DEPTH_ATTACHMENT};
+    glDiscardFramebufferEXT(GL_FRAMEBUFFER, 1, discards);
 }
 
 
