@@ -68,14 +68,16 @@ GLfloat gCubeVertexData[6*6*8] =
 	GLuint _vertexBuffer;
 	
 	// Physics
-	btDiscreteDynamicsWorld*				sDynamicsWorld;
+	btDiscreteDynamicsWorld				*sDynamicsWorld;
 	
-	btBroadphaseInterface*					sBroadphase	;
-	btCollisionConfiguration*				sCollisionConfig;
-	btCollisionDispatcher*					sCollisionDispatcher;
-	btSequentialImpulseConstraintSolver*	sConstraintSolver;
+	btBroadphaseInterface					*sBroadphase;
+	btCollisionConfiguration				*sCollisionConfig;
+	btCollisionDispatcher					*sCollisionDispatcher;
+	btSequentialImpulseConstraintSolver	*sConstraintSolver;
 	
-	btAlignedObjectArray<btRigidBody*>		sBoxBodies;
+	btAlignedObjectArray<btRigidBody*>		*sBoxBodies;
+	btAlignedObjectArray<btRigidBody*>		*sWorldPlanes;
+	btAlignedObjectArray<btCollisionShape*>	*sCollisionShapes;
 	
 	double gravity[3];
 	BOOL firstAccelerometerData;
@@ -202,36 +204,46 @@ GLfloat gCubeVertexData[6*6*8] =
 															0.1f, 100.0f);							// Near/far plane
     self.effect.transform.projectionMatrix = projectionMatrix;
 
-	
 	// -----------------------------------------------------------------------------------------------------------
 	sDynamicsWorld->setGravity( btVector3(0, -10 ,0) );
 	
 	// create 6 planes / half spaces (world contraints)
-	btBoxShape* worldBoxShape = new btBoxShape( btVector3(10, 10, 10) );	// world constraints
+	sWorldPlanes = new btAlignedObjectArray<btRigidBody*>();
+	sCollisionShapes = new btAlignedObjectArray<btCollisionShape*>();
+	btBoxShape* worldBoxShape = new btBoxShape( btVector3(10, 10, 10) );		// world constraints
 	for (int i = 0; i < 6; i++)
 	{
 		btVector4 planeEq;
-		worldBoxShape->getPlaneEquation(planeEq, i);		// get the i-th side of world box
+		worldBoxShape->getPlaneEquation(planeEq, i);				// get the i-th side of world box
 		btCollisionShape* worldBoxSideShape = new btStaticPlaneShape(-planeEq, planeEq[3]);
 		
-		btScalar mass = 0.0f;	// rigidbody is dynamic if and only if mass is non zero, otherwise static
+		btScalar mass = 0.0f;		// rigidbody is dynamic if and only if mass is non zero, otherwise static
 		btVector3 localInertia(0, 0, 0);
 		
 		btTransform groundTransform;
 		groundTransform.setIdentity();
-		groundTransform.setOrigin( btVector3(0, 0, 0) );	// origin == translation
+		groundTransform.setOrigin( btVector3(0, 0, 0) );			// origin == translation
 		
 		btDefaultMotionState* myMotionState = new btDefaultMotionState(groundTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, worldBoxSideShape, localInertia);
 		rbInfo.m_restitution	= 0.9;
 
 		btRigidBody* sFloorPlaneBody = new btRigidBody(rbInfo);
+		sWorldPlanes->push_back(sFloorPlaneBody);
+		sCollisionShapes->push_back(worldBoxSideShape);
 		
 		// add the body to the dynamics world
 		sDynamicsWorld->addRigidBody(sFloorPlaneBody);
+		
+		// myMotionState is only a temp object, it values get copied into the rigid object
+//		delete myMotionState;
+//		myMotionState = NULL;
 	}
+	delete worldBoxShape;
+	worldBoxShape = NULL;
 	
 	// create the some boxes
+	sBoxBodies = new btAlignedObjectArray<btRigidBody*>();
 	for (int i = 0; i < self.diceNumber; i++)
 	{
 		btCollisionShape* boxShape = new btBoxShape( btVector3(1, 1, 1) );
@@ -251,12 +263,17 @@ GLfloat gCubeVertexData[6*6*8] =
 		rbInfo.m_restitution	= 1.0;
 		btRigidBody* boxBody	= new btRigidBody(rbInfo);
 		
-		sBoxBodies.push_back(boxBody);
+		sBoxBodies->push_back(boxBody);
+		sCollisionShapes->push_back(boxShape);
 		
 		// most applications shouldn't disable deactivation, but for this demo it is better.
 		boxBody->setActivationState(DISABLE_DEACTIVATION);
 		// add the body to the dynamics world
 		sDynamicsWorld->addRigidBody(boxBody);
+		
+		// myMotionState is only a temp object, it values get copied into the rigid object
+//		delete myMotionState;
+//		myMotionState = NULL;
 	}
 }
 
@@ -294,8 +311,18 @@ GLfloat gCubeVertexData[6*6*8] =
 	// release effects
     self.effect = nil;
 	
-	// TODO: release worldbox
-	// TODO: release dice
+	// release bodies, the arrays release their elements on clear()
+	sBoxBodies->clear();
+	delete sBoxBodies;
+	sBoxBodies = NULL;
+	
+	sWorldPlanes->clear();
+	delete sWorldPlanes;
+	sWorldPlanes = NULL;
+
+	sCollisionShapes->clear();
+	delete sCollisionShapes;
+	sCollisionShapes = NULL;
 }
 
 
@@ -392,7 +419,7 @@ GLfloat gCubeVertexData[6*6*8] =
 	float objectTransform[16];
 	for (int i = 0; i < self.diceNumber; i++)
 	{
-		sBoxBodies[i]->getCenterOfMassTransform().getOpenGLMatrix(objectTransform);
+		sBoxBodies->at(i)->getCenterOfMassTransform().getOpenGLMatrix(objectTransform);
 		GLKMatrix4 objectTransformMatrix = GLKMatrix4MakeWithArray(objectTransform);
 		
 		GLKMatrix4 cameraTransformMatrix	= GLKMatrix4MakeTranslation(0.0f, 0.0f, -30.0f);
