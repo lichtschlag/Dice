@@ -13,51 +13,51 @@
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-GLfloat gCubeVertexData[216] = 
+GLfloat gCubeVertexData[6*6*8] = 
 {
     // Data layout for each line below is:
-    // positionX, positionY, positionZ,     normalX, normalY, normalZ,
-    1.0f,-1.0f,-1.0f,			1.0f, 0.0f, 0.0f,
-    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,
-    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,
-    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,
-    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,
-    1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,
+    // positionX, positionY, positionZ,     normalX, normalY, normalZ,		tex0.x, tex0.y
+    1.0f,-1.0f,-1.0f,			1.0f, 0.0f, 0.0f,			0.0f, 0.0f,
+    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.0f,
+    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.33f,
+    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.33f,
+    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.0f,
+    1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
     
-     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,
-    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,
-     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,
-     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,
-    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,
-    -1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,
+     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.0f,
+    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,
+     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,
+     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,
+    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,
+    -1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.33f,
     
-    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,
-    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,
-    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,
-    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,
+    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,			0.0f, 0.33f,
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
+    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,			0.0f, 0.66f,
+    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,			0.0f, 0.66f,
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
+    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,			0.5f, 0.66f,
     
-    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,
-    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,
-    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,
-     1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,
+    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,			0.5f, 0.33f,
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,			1.0f, 0.33f,
+    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,			0.5f, 0.66f,
+    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,			0.5f, 0.66f,
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,			1.0f, 0.33f,
+     1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,			1.0f, 0.66f,
     
-     1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,
-    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,
-    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,
-    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,
+     1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.0f, 0.66f,
+    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.5f, 0.66f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.0f, 1.0f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.0f, 1.0f,
+    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.5f, 0.66f,
+    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.5f, 1.0f,
     
-	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,
-	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,
-	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,
-	-1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f
+	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			0.5f, 0.66f,
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			1.0f, 0.66f,
+	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			0.5f, 1.0f,
+	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			0.5f, 1.0f,
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			1.0f, 0.66f,
+	-1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			1.0f, 1.0
 };
 
 
@@ -65,9 +65,6 @@ GLfloat gCubeVertexData[216] =
 @interface DMViewController () 
 // ===============================================================================================================
 {
-	float _rotation;
-	
-//	GLuint _vertexArray;
 	GLuint _vertexBuffer;
 	
 	// Physics
@@ -87,7 +84,7 @@ GLfloat gCubeVertexData[216] =
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
 @property int diceNumber;
-@property (strong) CMMotionManager* motionManager;
+@property (strong) CMMotionManager *motionManager;
 
 - (void) setupGL;
 - (void) setupScene;
@@ -107,6 +104,7 @@ GLfloat gCubeVertexData[216] =
 @synthesize context		= _context;
 @synthesize effect			= _effect;
 @synthesize diceNumber		= _diceNumber;
+@synthesize motionManager = _motionManager;
 
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -137,6 +135,7 @@ GLfloat gCubeVertexData[216] =
 	[super viewDidUnload];
     
 	[self.motionManager stopAccelerometerUpdates];
+	self.motionManager = nil;
 	
 	[self tearDownGL];
 	[self tearDownBullet];    
@@ -162,29 +161,40 @@ GLfloat gCubeVertexData[216] =
 
 - (void) setupScene
 {
-	// load mesh for one dice
 	[EAGLContext setCurrentContext:self.context];
-
-	// load mesh for one dice
-
-//	glGenVertexArraysOES(1, &_vertexArray);
-//	glBindVertexArrayOES(_vertexArray);
-    
+	
+	// load texture data
+	NSError *outError = nil;
+	NSURL *textureURL				= [[NSBundle mainBundle] URLForResource:@"DiceSides" withExtension:@"jpg"];
+	NSDictionary *options			= [NSDictionary dictionaryWithObjectsAndKeys:
+									   [NSNumber numberWithBool:NO],  GLKTextureLoaderGenerateMipmaps,
+									   [NSNumber numberWithBool:YES], GLKTextureLoaderOriginBottomLeft, nil];
+	GLKTextureInfo *textureInfo	= [GLKTextureLoader textureWithContentsOfURL:textureURL options:options error:&outError];
+	if (!textureInfo)
+		NSLog(@"%s %@", __PRETTY_FUNCTION__, outError);
+	
+	// load mesh for one dice to graphics card
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 8*4, BUFFER_OFFSET(0));
     glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
-    
-//	glBindVertexArrayOES(0);
-	
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 8*4, BUFFER_OFFSET(3*4));
+    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 8*4, BUFFER_OFFSET(6*4));
+
 	// create a simple effect for the dice
 	self.effect = [[GLKBaseEffect alloc] init];
 	self.effect.light0.enabled			= GL_TRUE;
-	self.effect.light0.diffuseColor	= GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
+	self.effect.light0.diffuseColor	= GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
+	self.effect.texture2d0.enabled		= GL_TRUE;
+	self.effect.texture2d0.name		= textureInfo.name;
+	self.effect.useConstantColor		= GL_TRUE;
+	self.effect.constantColor			= GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
+	self.effect.lightingType			= GLKLightingTypePerPixel;
+
 	// compute projection matix
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f),	// FoV
@@ -276,8 +286,11 @@ GLfloat gCubeVertexData[216] =
 	// release buffers
     [EAGLContext setCurrentContext:self.context];
     glDeleteBuffers(1, &_vertexBuffer);
-//    glDeleteVertexArraysOES(1, &_vertexArray);
     
+	// release texture
+	GLuint textureID = self.effect.texture2d0.name;
+	glDeleteTextures( 1, &textureID);
+	
 	// release effects
     self.effect = nil;
 	
@@ -303,7 +316,6 @@ GLfloat gCubeVertexData[216] =
 }
 
 
-
 // ---------------------------------------------------------------------------------------------------------------
 #pragma mark -
 #pragma mark Interaction
@@ -323,7 +335,7 @@ GLfloat gCubeVertexData[216] =
 // Update the world state
 - (void) update
 {
-	// get two vetors: gravity and current motion
+	// get two vectors: gravity and current motion
 	float alpha = 0.1;
 	double motion[3] = {0,0,0};
 	CMAccelerometerData *newestAccel = self.motionManager.accelerometerData;
@@ -344,7 +356,7 @@ GLfloat gCubeVertexData[216] =
 	motion[1]	= newestAccel.acceleration.y - gravity[1];
 	motion[2]	= newestAccel.acceleration.z - gravity[2];
 	
-	float gScaling = 0.0;			// stil should fall down as if the device was helt in portrait
+	float gScaling = 0.0;			// still, should fall down as if the device was helt in portrait
 	float mScaling = 300.0;		// emphasize changes a bit more, so that we notice it more
 	sDynamicsWorld->setGravity( btVector3(gScaling * gravity[0] + mScaling *motion[0], 
 										    gScaling * gravity[1] + mScaling *motion[1] - 10.0,
@@ -352,7 +364,7 @@ GLfloat gCubeVertexData[216] =
 
 	// move physics forward
 	float updateRate = 1 / self.timeSinceLastUpdate;
-	sDynamicsWorld->stepSimulation(updateRate, 2, 1.0/150.0); // allow 2 steps if our graphics are lagging
+	sDynamicsWorld->stepSimulation(updateRate, 2, 1.0/150.0); // slow motion
 	
 	// for debugging: print the timing on the 10th frame
 	static int i = 0;
@@ -376,7 +388,6 @@ GLfloat gCubeVertexData[216] =
     
 	// draw the boxes for the dice with effect framework
 	glPushGroupMarkerEXT(0, "Dice");
-//	glBindVertexArrayOES(_vertexArray);
 
 	float objectTransform[16];
 	for (int i = 0; i < self.diceNumber; i++)
@@ -388,7 +399,7 @@ GLfloat gCubeVertexData[216] =
 		self.effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransformMatrix, objectTransformMatrix);
 		
 		[self.effect prepareToDraw];
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		glDrawArrays(GL_TRIANGLES, 0, 6*6);
 	}
 	glPopGroupMarkerEXT();
 }
