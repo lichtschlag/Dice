@@ -65,26 +65,30 @@ GLfloat gCubeVertexData[6*6*8] =
 @interface DMViewController () 
 // ===============================================================================================================
 {
-	GLuint _vertexBuffer;
+	GLuint mVertexBuffer;
+	GLuint mDiceVertexArray;
 	
 	// Physics
-	btDiscreteDynamicsWorld				*sDynamicsWorld;
+	btDiscreteDynamicsWorld					*pDynamicsWorld;
 	
-	btBroadphaseInterface					*sBroadphase;
-	btCollisionConfiguration				*sCollisionConfig;
-	btCollisionDispatcher					*sCollisionDispatcher;
-	btSequentialImpulseConstraintSolver	*sConstraintSolver;
+	btBroadphaseInterface						*pBroadphase;
+	btCollisionConfiguration					*pCollisionConfig;
+	btCollisionDispatcher						*pCollisionDispatcher;
+	btSequentialImpulseConstraintSolver		*pConstraintSolver;
 	
-	btAlignedObjectArray<btRigidBody*>		*sBoxBodies;
-	btAlignedObjectArray<btRigidBody*>		*sWorldPlanes;
-	btAlignedObjectArray<btCollisionShape*>	*sCollisionShapes;
+	btAlignedObjectArray<btRigidBody*>			*pBoxBodies;
+	btAlignedObjectArray<btRigidBody*>			*pWorldPlanes;
+	btAlignedObjectArray<btCollisionShape*>	*pCollisionShapes;
 	
+	// motion filtering
 	double gravity[3];
 	BOOL firstAccelerometerData;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
-@property (strong, nonatomic) GLKBaseEffect *effect;
+//@property (strong, nonatomic) GLKReflectionMapEffect *objectEffect;
+@property (strong, nonatomic) GLKBaseEffect *objectEffect;
+@property (strong, nonatomic) GLKSkyboxEffect *environmentEffect;
 @property int diceNumber;
 @property (strong) CMMotionManager *motionManager;
 
@@ -103,10 +107,11 @@ GLfloat gCubeVertexData[6*6*8] =
 @implementation DMViewController
 // ===============================================================================================================
 
-@synthesize context		= _context;
-@synthesize effect			= _effect;
-@synthesize diceNumber		= _diceNumber;
-@synthesize motionManager = _motionManager;
+@synthesize context			= mContext;
+@synthesize objectEffect		= mObjectEffect;
+@synthesize environmentEffect	= mEnvironmentEffect;
+@synthesize diceNumber			= mDiceNumber;
+@synthesize motionManager		= mMotionManager;
 
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -172,44 +177,67 @@ GLfloat gCubeVertexData[6*6*8] =
 									   [NSNumber numberWithBool:NO],  GLKTextureLoaderGenerateMipmaps,
 									   [NSNumber numberWithBool:YES], GLKTextureLoaderOriginBottomLeft, nil];
 	GLKTextureInfo *textureInfo	= [GLKTextureLoader textureWithContentsOfURL:textureURL options:options error:&outError];
+	
+	textureURL						= [[NSBundle mainBundle] URLForResource:@"EnvironmentCubeMap" withExtension:@"jpg"];
+	options							= [NSDictionary dictionaryWithObjectsAndKeys:
+									   [NSNumber numberWithBool:NO],  GLKTextureLoaderGenerateMipmaps,
+									   nil];
+	GLKTextureInfo *cubeMapInfo	= [GLKTextureLoader cubeMapWithContentsOfURL:textureURL options:options error:&outError];
+	
 	if (!textureInfo)
 		NSLog(@"%s %@", __PRETTY_FUNCTION__, outError);
 	
 	// load mesh for one dice to graphics card
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
+	glGenVertexArraysOES(1, &mDiceVertexArray);
+	glBindVertexArrayOES(mDiceVertexArray);
+	
+    glGenBuffers(1, &mVertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, mVertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 8*4, BUFFER_OFFSET(0));
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 8*sizeof(GLfloat), BUFFER_OFFSET(0));
     glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 8*4, BUFFER_OFFSET(3*4));
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 8*sizeof(GLfloat), BUFFER_OFFSET(3*sizeof(GLfloat)));
     glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 8*4, BUFFER_OFFSET(6*4));
+    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 8*sizeof(GLfloat), BUFFER_OFFSET(6*sizeof(GLfloat)));
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArrayOES(0);
 
 	// create a simple effect for the dice
-	self.effect = [[GLKBaseEffect alloc] init];
-	self.effect.light0.enabled			= GL_TRUE;
-	self.effect.light0.diffuseColor	= GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
-	self.effect.texture2d0.enabled		= GL_TRUE;
-	self.effect.texture2d0.name		= textureInfo.name;
-	self.effect.useConstantColor		= GL_TRUE;
-	self.effect.constantColor			= GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
-	self.effect.lightingType			= GLKLightingTypePerPixel;
+//	self.objectEffect = [[GLKReflectionMapEffect alloc] init];
+	self.objectEffect = [[GLKBaseEffect alloc] init];
+	self.objectEffect.light0.enabled			= GL_TRUE;
+	self.objectEffect.light0.diffuseColor		= GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
+	self.objectEffect.texture2d0.enabled		= GL_TRUE;
+	self.objectEffect.texture2d0.name			= textureInfo.name;
+	self.objectEffect.useConstantColor			= GL_TRUE;
+	self.objectEffect.constantColor				= GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
+	self.objectEffect.lightingType				= GLKLightingTypePerPixel;
+//	self.objectEffect.textureCubeMap.name		= cubeMapInfo.name;
+//	self.objectEffect.textureCubeMap.envMode	= GLKTextureEnvModeModulate;
 
 	// compute projection matix
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f),	// FoV
 															aspect,									// Sceen aspect
 															0.1f, 100.0f);							// Near/far plane
-    self.effect.transform.projectionMatrix = projectionMatrix;
-
+    self.objectEffect.transform.projectionMatrix = projectionMatrix;
+	
+	// create skybox effect
+	self.environmentEffect = [[GLKSkyboxEffect alloc] init]; 
+	self.environmentEffect.transform.projectionMatrix = projectionMatrix;
+	self.environmentEffect.textureCubeMap.name = cubeMapInfo.name;
+	self.environmentEffect.xSize = 100.0f;
+	self.environmentEffect.ySize = 100.0f;
+	self.environmentEffect.zSize = 100.0f;
+	
 	// -----------------------------------------------------------------------------------------------------------
-	sDynamicsWorld->setGravity( btVector3(0, -10 ,0) );
+	pDynamicsWorld->setGravity( btVector3(0, -10 ,0) );
 	
 	// create 6 planes / half spaces (world contraints)
-	sWorldPlanes = new btAlignedObjectArray<btRigidBody*>();
-	sCollisionShapes = new btAlignedObjectArray<btCollisionShape*>();
+	pWorldPlanes = new btAlignedObjectArray<btRigidBody*>();
+	pCollisionShapes = new btAlignedObjectArray<btCollisionShape*>();
 	btBoxShape* worldBoxShape = new btBoxShape( btVector3(10, 10, 10) );		// world constraints
 	for (int i = 0; i < 6; i++)
 	{
@@ -229,29 +257,27 @@ GLfloat gCubeVertexData[6*6*8] =
 		rbInfo.m_restitution	= 0.9;
 
 		btRigidBody* sFloorPlaneBody = new btRigidBody(rbInfo);
-		sWorldPlanes->push_back(sFloorPlaneBody);
-		sCollisionShapes->push_back(worldBoxSideShape);
+		pWorldPlanes->push_back(sFloorPlaneBody);
+		pCollisionShapes->push_back(worldBoxSideShape);
 		
 		// add the body to the dynamics world
-		sDynamicsWorld->addRigidBody(sFloorPlaneBody);
-		
-		// myMotionState is only a temp object, it values get copied into the rigid object
-//		delete myMotionState;
-//		myMotionState = NULL;
+		pDynamicsWorld->addRigidBody(sFloorPlaneBody);
 	}
 	delete worldBoxShape;
 	worldBoxShape = NULL;
 	
 	// create the some boxes
-	sBoxBodies = new btAlignedObjectArray<btRigidBody*>();
+	pBoxBodies = new btAlignedObjectArray<btRigidBody*>();
+
+	// create collision shape that all dice share
+	btCollisionShape* boxShape = new btBoxShape( btVector3(1, 1, 1) );	
+	btScalar mass = 0.20;		// positive mass means dynamic/moving object
+	btVector3 localInertia(0, 0, 0);
+	boxShape->calculateLocalInertia(mass, localInertia);
+	pCollisionShapes->push_back(boxShape);
+
 	for (int i = 0; i < self.diceNumber; i++)
 	{
-		btCollisionShape* boxShape = new btBoxShape( btVector3(1, 1, 1) );
-		
-		btScalar mass = 0.20;		// positive mass means dynamic/moving object
-		btVector3 localInertia(0, 0, 0);
-		boxShape->calculateLocalInertia(mass, localInertia);
-		
 		btTransform objectTransform;
 		objectTransform.setIdentity();
 		float stride = 3.0;
@@ -261,19 +287,14 @@ GLfloat gCubeVertexData[6*6*8] =
 		btDefaultMotionState* myMotionState = new btDefaultMotionState(objectTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape, localInertia);
 		rbInfo.m_restitution	= 1.0;
+
 		btRigidBody* boxBody	= new btRigidBody(rbInfo);
-		
-		sBoxBodies->push_back(boxBody);
-		sCollisionShapes->push_back(boxShape);
+		pBoxBodies->push_back(boxBody);
 		
 		// most applications shouldn't disable deactivation, but for this demo it is better.
 		boxBody->setActivationState(DISABLE_DEACTIVATION);
 		// add the body to the dynamics world
-		sDynamicsWorld->addRigidBody(boxBody);
-		
-		// myMotionState is only a temp object, it values get copied into the rigid object
-//		delete myMotionState;
-//		myMotionState = NULL;
+		pDynamicsWorld->addRigidBody(boxBody);
 	}
 }
 
@@ -281,12 +302,12 @@ GLfloat gCubeVertexData[6*6*8] =
 - (void) setupBullet
 {
 	// collision setup
-	sCollisionConfig	= new btDefaultCollisionConfiguration();
-	sBroadphase			= new btDbvtBroadphase();
+	pCollisionConfig		= new btDefaultCollisionConfiguration();
+	pBroadphase				= new btDbvtBroadphase();
 	
-	sCollisionDispatcher	= new btCollisionDispatcher(sCollisionConfig);
-	sConstraintSolver		= new btSequentialImpulseConstraintSolver;
-	sDynamicsWorld			= new btDiscreteDynamicsWorld(sCollisionDispatcher, sBroadphase, sConstraintSolver, sCollisionConfig);
+	pCollisionDispatcher	= new btCollisionDispatcher(pCollisionConfig);
+	pConstraintSolver		= new btSequentialImpulseConstraintSolver;
+	pDynamicsWorld			= new btDiscreteDynamicsWorld(pCollisionDispatcher, pBroadphase, pConstraintSolver, pCollisionConfig);
 }
 
 
@@ -302,44 +323,50 @@ GLfloat gCubeVertexData[6*6*8] =
 {
 	// release buffers
     [EAGLContext setCurrentContext:self.context];
-    glDeleteBuffers(1, &_vertexBuffer);
+    glDeleteBuffers(1, &mVertexBuffer);
+	glDeleteVertexArraysOES(1, &mDiceVertexArray);
     
 	// release texture
-	GLuint textureID = self.effect.texture2d0.name;
+	GLuint textureID = self.objectEffect.texture2d0.name;
+	glDeleteTextures( 1, &textureID);
+	textureID = self.environmentEffect.textureCubeMap.name;
 	glDeleteTextures( 1, &textureID);
 	
 	// release effects
-    self.effect = nil;
+    self.objectEffect = nil;
+    self.environmentEffect = nil;
 	
 	// release bodies, the arrays release their elements on clear()
-	sBoxBodies->clear();
-	delete sBoxBodies;
-	sBoxBodies = NULL;
+	pBoxBodies->clear();
+	delete pBoxBodies;
+	pBoxBodies = NULL;
 	
-	sWorldPlanes->clear();
-	delete sWorldPlanes;
-	sWorldPlanes = NULL;
+	pWorldPlanes->clear();
+	delete pWorldPlanes;
+	pWorldPlanes = NULL;
 
-	sCollisionShapes->clear();
-	delete sCollisionShapes;
-	sCollisionShapes = NULL;
+	pCollisionShapes->clear();
+	delete pCollisionShapes;
+	pCollisionShapes = NULL;
+	
+	// TODO: probably, I should dealloc all of the bodies' motion states as well...
 }
 
 
 - (void) tearDownBullet
 {
 	// Cleanup Bullet
-	delete sDynamicsWorld;
-	sDynamicsWorld			= NULL;
+	delete pDynamicsWorld;
+	pDynamicsWorld			= NULL;
 	
-	delete sBroadphase;
-	sBroadphase				= NULL;
-	delete sCollisionConfig;
-	sCollisionConfig		= NULL;
-	delete sCollisionDispatcher;
-	sCollisionDispatcher	= NULL;
-	delete sConstraintSolver;
-	sConstraintSolver		= NULL;
+	delete pBroadphase;
+	pBroadphase				= NULL;
+	delete pCollisionConfig;
+	pCollisionConfig		= NULL;
+	delete pCollisionDispatcher;
+	pCollisionDispatcher	= NULL;
+	delete pConstraintSolver;
+	pConstraintSolver		= NULL;
 }
 
 
@@ -385,22 +412,22 @@ GLfloat gCubeVertexData[6*6*8] =
 	
 	float gScaling = 0.0;			// still, should fall down as if the device was helt in portrait
 	float mScaling = 300.0;		// emphasize changes a bit more, so that we notice it more
-	sDynamicsWorld->setGravity( btVector3(gScaling * gravity[0] + mScaling *motion[0], 
+	pDynamicsWorld->setGravity( btVector3(gScaling * gravity[0] + mScaling *motion[0], 
 										    gScaling * gravity[1] + mScaling *motion[1] - 10.0,
 										    gScaling * gravity[2] + mScaling *motion[2]));
 
 	// move physics forward
 	float updateRate = 1 / self.timeSinceLastUpdate;
-	sDynamicsWorld->stepSimulation(updateRate, 2, 1.0/150.0); // slow motion
-	
-	// for debugging: print the timing on the 10th frame
-	static int i = 0;
-	if (i < 10)
-	{
-		i++;
-		if (i == 10)
-			CProfileManager::dumpAll();
-	}	
+	pDynamicsWorld->stepSimulation(updateRate, 2, 1.0/150.0); // slow motion
+
+//	// for debugging: print the timing on the 10th frame
+//	static int i = 0;
+//	if (i < 10)
+//	{
+//		i++;
+//		if (i == 10)
+//			CProfileManager::dumpAll();
+//	}	
 }
 
 
@@ -412,20 +439,27 @@ GLfloat gCubeVertexData[6*6*8] =
 	glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPopGroupMarkerEXT();
-    
+	
+	// draw the skybox
+	glPushGroupMarkerEXT(0, "Environment");
+	[self.environmentEffect prepareToDraw];
+	[self.environmentEffect draw];
+	glPopGroupMarkerEXT();
+	    
 	// draw the boxes for the dice with effect framework
 	glPushGroupMarkerEXT(0, "Dice");
+	glBindVertexArrayOES(mDiceVertexArray);
 
 	float objectTransform[16];
 	for (int i = 0; i < self.diceNumber; i++)
 	{
-		sBoxBodies->at(i)->getCenterOfMassTransform().getOpenGLMatrix(objectTransform);
+		pBoxBodies->at(i)->getCenterOfMassTransform().getOpenGLMatrix(objectTransform);
 		GLKMatrix4 objectTransformMatrix = GLKMatrix4MakeWithArray(objectTransform);
 		
 		GLKMatrix4 cameraTransformMatrix	= GLKMatrix4MakeTranslation(0.0f, 0.0f, -30.0f);
-		self.effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransformMatrix, objectTransformMatrix);
+		self.objectEffect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransformMatrix, objectTransformMatrix);
 		
-		[self.effect prepareToDraw];
+		[self.objectEffect prepareToDraw];
 		glDrawArrays(GL_TRIANGLES, 0, 6*6);
 	}
 	glPopGroupMarkerEXT();
