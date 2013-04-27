@@ -11,6 +11,7 @@
 #import "btBulletDynamicsCommon.h"
 
 
+
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
 GLfloat gCubeVertexData[6*6*8] = 
@@ -61,6 +62,18 @@ GLfloat gCubeVertexData[6*6*8] =
 };
 
 
+typedef NS_ENUM(NSInteger, L2RInteractionState)
+{
+    L2RInteractionStateNormal,
+	L2RInteractionStateGravity,
+	L2RInteractionStateAnimatingToNormal,
+    L2RInteractionStateRotatingLeft,
+    L2RInteractionStateRotatingRight,
+    L2RInteractionStateRotatingUp,
+    L2RInteractionStateRotatingDown
+};
+
+
 // ===============================================================================================================
 @interface DMViewController () 
 // ===============================================================================================================
@@ -91,6 +104,7 @@ GLfloat gCubeVertexData[6*6*8] =
 @property (strong, nonatomic) GLKSkyboxEffect *environmentEffect;
 @property int diceNumber;
 @property (strong) CMMotionManager *motionManager;
+@property			L2RInteractionState currentState;
 
 - (void) setupGL;
 - (void) setupScene;
@@ -107,7 +121,7 @@ GLfloat gCubeVertexData[6*6*8] =
 @implementation DMViewController
 // ===============================================================================================================
 
-@synthesize context			= mContext;
+@synthesize context				= mContext;
 @synthesize objectEffect		= mObjectEffect;
 @synthesize environmentEffect	= mEnvironmentEffect;
 @synthesize diceNumber			= mDiceNumber;
@@ -123,8 +137,10 @@ GLfloat gCubeVertexData[6*6*8] =
 {
 	[super viewDidLoad];
 
-	self.diceNumber = 12;
+	self.diceNumber = 16;
+	self.currentState = L2RInteractionStateNormal;
 	
+	[self setupButtons];
 	[self setupGL];
 	[self setupBullet];
 	[self setupScene];
@@ -137,6 +153,7 @@ GLfloat gCubeVertexData[6*6*8] =
 }
 
 
+// not called in iOS6 anymore
 - (void) viewDidUnload
 {    
 	[super viewDidUnload];
@@ -280,9 +297,9 @@ GLfloat gCubeVertexData[6*6*8] =
 	{
 		btTransform objectTransform;
 		objectTransform.setIdentity();
-		float stride = 3.0;
-		div_t division = div(i, 3);
-		objectTransform.setOrigin( btVector3(division.rem * stride, division.quot * stride, 0) );
+		float stride = 2.0;
+		div_t division = div(i, 4);
+		objectTransform.setOrigin( btVector3(division.rem * stride - 1.5*stride, division.quot * stride - 1.5*stride, 0) );
 
 		btDefaultMotionState* myMotionState = new btDefaultMotionState(objectTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape, localInertia);
@@ -390,6 +407,38 @@ GLfloat gCubeVertexData[6*6*8] =
 - (void) update
 {
 	// get two vectors: gravity and current motion
+	[self computeGravity];
+
+	// move physics forward
+	if (self.currentState  == L2RInteractionStateGravity)
+	{
+		// TODO: consider slowing down the first gravity impact
+		
+		float updateRate = 1 / self.timeSinceLastUpdate;
+		pDynamicsWorld->stepSimulation(updateRate, 2, 1.0/150.0); // slow motion, because it's more fun
+
+		//	// for debugging: print the timing on the 10th frame
+		//	static int i = 0;
+		//	if (i < 10)
+		//	{
+		//		i++;
+		//		if (i == 10)
+		//			CProfileManager::dumpAll();
+		//	}
+	}
+	
+	// animate
+	else if (self.currentState  != L2RInteractionStateNormal)
+	{
+		// for all boxes, animate from their last safe position to the target position with time factor t
+		self.currentState = L2RInteractionStateNormal;
+	}
+}
+
+
+- (void) computeGravity
+{
+	// get two vectors: gravity and current motion
 	float alpha = 0.1;
 	double motion[3] = {0,0,0};
 	CMAccelerometerData *newestAccel = self.motionManager.accelerometerData;
@@ -412,22 +461,9 @@ GLfloat gCubeVertexData[6*6*8] =
 	
 	float gScaling = 0.0;			// still, should fall down as if the device was helt in portrait
 	float mScaling = 300.0;		// emphasize changes a bit more, so that we notice it more
-	pDynamicsWorld->setGravity( btVector3(gScaling * gravity[0] + mScaling *motion[0], 
-										    gScaling * gravity[1] + mScaling *motion[1] - 10.0,
-										    gScaling * gravity[2] + mScaling *motion[2]));
-
-	// move physics forward
-	float updateRate = 1 / self.timeSinceLastUpdate;
-	pDynamicsWorld->stepSimulation(updateRate, 2, 1.0/150.0); // slow motion
-
-//	// for debugging: print the timing on the 10th frame
-//	static int i = 0;
-//	if (i < 10)
-//	{
-//		i++;
-//		if (i == 10)
-//			CProfileManager::dumpAll();
-//	}	
+	pDynamicsWorld->setGravity( btVector3(gScaling * gravity[0] + mScaling *motion[0],
+										  gScaling * gravity[1] + mScaling *motion[1] - 10.0,
+										  gScaling * gravity[2] + mScaling *motion[2]));
 }
 
 
@@ -436,14 +472,14 @@ GLfloat gCubeVertexData[6*6*8] =
 {
 	// draw background
 	glPushGroupMarkerEXT(0, "Background");
-	glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
+	glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPopGroupMarkerEXT();
 	
 	// draw the skybox
 	glPushGroupMarkerEXT(0, "Environment");
 	[self.environmentEffect prepareToDraw];
-	[self.environmentEffect draw];
+//	[self.environmentEffect draw];
 	glPopGroupMarkerEXT();
 	    
 	// draw the boxes for the dice with effect framework
@@ -467,6 +503,257 @@ GLfloat gCubeVertexData[6*6*8] =
 	// Discard the depth buffer
     const GLenum discards[]  = {GL_DEPTH_ATTACHMENT};
     glDiscardFramebufferEXT(GL_FRAMEBUFFER, 1, discards);
+}
+
+
+//// -----------------------------------------------------------------------------------------------------------------
+//#pragma mark -
+//#pragma mark touch detection
+//// -----------------------------------------------------------------------------------------------------------------
+//
+//- (IBAction) tapGesture:(id)sender
+//{
+//	if ([(UITapGestureRecognizer *)sender state] == UIGestureRecognizerStateEnded)
+//	{
+//		CGPoint tapPosition = [(UITapGestureRecognizer *)sender locationInView:self.view];
+//		int index = [self indexOfDiceAtPointInView:tapPosition];
+//		
+//		// switch the texture fo that object to show it was selected
+//		
+//		
+//	}
+//}
+//
+//
+//- (int) indexOfDiceAtPointInView:(CGPoint)pointInView
+//{
+//	// prepare a second frame buffer that ww will render all the dice to for selection purposes
+//	// each tab triggers one reder call
+//	
+//	GLuint colorRenderbuffer;
+//	GLuint framebuffer;
+//	
+//	glGenFramebuffers(1, &framebuffer);
+//	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+//	glGenRenderbuffers(1, &colorRenderbuffer);
+//	glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
+//	
+//	NSInteger height = ((GLKView *)self.view).drawableHeight;
+//	NSInteger width = ((GLKView *)self.view).drawableWidth;
+//	glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA8_OES, width, height);
+//
+//	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0_OES, GL_RENDERBUFFER, colorRenderbuffer);
+//	
+//	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+//	if (status != GL_FRAMEBUFFER_COMPLETE)
+//	{
+//		NSLog(@"Framebuffer status: %x", (int)status);
+//		return 0;
+//	}
+//
+//	// now render all the dice so we'll kno which one to pick
+////	[self render:DM_SELECT];
+//	
+//	CGFloat scale = UIScreen.mainScreen.scale;		// todo maybe call glkview's property instead
+//	Byte returnedPixelColor[4] = {0, 0, 0, 0};
+//	glReadPixels(pointInView.x * scale,
+//				 (height - (pointInView.y * scale)),
+//				 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, returnedPixelColor);
+//	
+//	// clean up
+//	glDeleteRenderbuffers(1, &colorRenderbuffer);
+//	glDeleteFramebuffers(1, &framebuffer);
+//	
+//	return returnedPixelColor[0];
+//}
+//
+
+// -----------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark Finger Interaction
+// -----------------------------------------------------------------------------------------------------------------
+
+// State machine will transition from animating states to normal state in update function after animation is done
+- (IBAction) userDidTap:(UIGestureRecognizer *)sender;
+{
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+
+	if (self.currentState == L2RInteractionStateNormal)
+		self.currentState = L2RInteractionStateGravity;
+	
+	else if (self.currentState == L2RInteractionStateGravity)
+		self.currentState = L2RInteractionStateAnimatingToNormal;
+}
+
+
+- (IBAction) userDidSwipeRight:(UIGestureRecognizer *)sender;
+{
+	if (self.currentState == L2RInteractionStateNormal)
+		self.currentState = L2RInteractionStateRotatingRight;
+}
+
+
+- (IBAction) userDidSwipeLeft:(UIGestureRecognizer *)sender;
+{
+	if (self.currentState == L2RInteractionStateNormal)
+		self.currentState = L2RInteractionStateRotatingLeft;
+}
+
+
+- (IBAction) userDidSwipeUp:(UIGestureRecognizer *)sender;
+{
+	if (self.currentState == L2RInteractionStateNormal)
+		self.currentState = L2RInteractionStateRotatingUp;
+}
+
+
+- (IBAction) userDidSwipeDown:(UIGestureRecognizer *)sender;
+{
+	if (self.currentState == L2RInteractionStateNormal)
+		self.currentState = L2RInteractionStateRotatingDown;
+}
+
+
+- (IBAction) userDidTapShareButton:(id)sender
+{
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+	[self composeEmailAndDisplaySheet];
+}
+
+- (IBAction) userDidTapInfoButton:(id)sender
+{
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
+
+// -----------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark Custom Button Look
+// -----------------------------------------------------------------------------------------------------------------
+
+- (void) setupButtons
+{
+	UIImage *buttonImage;
+	
+	// creating an in-memory image as a template for the buttons
+	CGFloat radius = 40.0f;
+	CGFloat width = radius * 2+15;
+	UIColor *foregroundColor = [UIColor whiteColor];
+	
+	buttonImage = [self resizableImageWithForegroundColor:foregroundColor
+												withWidth:width
+												   radius:radius
+												 forState:UIControlStateNormal];
+	[self.infoButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+	[self.shareButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+	
+	buttonImage = [self resizableImageWithForegroundColor:foregroundColor
+												withWidth:width
+												   radius:radius
+												 forState:UIControlStateHighlighted];
+	[self.infoButton setBackgroundImage:buttonImage forState:UIControlStateHighlighted];
+	[self.shareButton setBackgroundImage:buttonImage forState:UIControlStateHighlighted];
+}
+
+
+- (UIImage *) resizableImageWithForegroundColor:(UIColor *)foregroundColor
+									  withWidth:(CGFloat)width
+										 radius:(CGFloat)radius
+									   forState:(UIControlState)buttonState
+{
+	// set up drawing context
+	UIGraphicsBeginImageContext(CGSizeMake(width, width));
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	UIGraphicsPushContext(context);
+	
+	// drawing state image
+	[[UIColor clearColor] set];
+	CGContextFillRect(context, CGRectMake(0, 0, width, width));
+	
+	[foregroundColor set];
+	CGContextSetShadowWithColor(context, CGSizeMake(0,0), 6.0, foregroundColor.CGColor);
+	
+	CGPathRef roundedRectPath = [self newPathForRoundedRect:CGRectInset(CGRectMake(0, 0, width, width),5,5) radius:radius];
+	CGContextAddPath(context, roundedRectPath);
+	
+	if (buttonState == UIControlStateNormal)
+		CGContextStrokePath(context);
+	else
+		CGContextFillPath(context);
+	
+	// take down drawing context
+	UIGraphicsPopContext();
+	UIImage *tempImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	return [tempImage resizableImageWithCapInsets:UIEdgeInsetsMake(radius +6, radius +6, radius +6, radius +6)];
+}
+
+
+- (CGPathRef) newPathForRoundedRect:(CGRect)rect radius:(CGFloat)radius
+{
+	// helper function for the button images
+	CGMutablePathRef retPath = CGPathCreateMutable();
+	
+	CGRect innerRect = CGRectInset(rect, radius, radius);
+	
+	CGFloat inside_right = innerRect.origin.x + innerRect.size.width;
+	CGFloat outside_right = rect.origin.x + rect.size.width;
+	CGFloat inside_bottom = innerRect.origin.y + innerRect.size.height;
+	CGFloat outside_bottom = rect.origin.y + rect.size.height;
+	
+	CGFloat inside_top = innerRect.origin.y;
+	CGFloat outside_top = rect.origin.y;
+	CGFloat outside_left = rect.origin.x;
+	
+	CGPathMoveToPoint(retPath, NULL, innerRect.origin.x, outside_top);
+	
+	CGPathAddLineToPoint(retPath, NULL, inside_right, outside_top);
+	CGPathAddArcToPoint(retPath, NULL, outside_right, outside_top, outside_right, inside_top, radius);
+	CGPathAddLineToPoint(retPath, NULL, outside_right, inside_bottom);
+	CGPathAddArcToPoint(retPath, NULL,  outside_right, outside_bottom, inside_right, outside_bottom, radius);
+	
+	CGPathAddLineToPoint(retPath, NULL, innerRect.origin.x, outside_bottom);
+	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_bottom, outside_left, inside_bottom, radius);
+	CGPathAddLineToPoint(retPath, NULL, outside_left, inside_top);
+	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_top, innerRect.origin.x, outside_top, radius);
+	
+	CGPathCloseSubpath(retPath);
+	
+	return retPath;
+}
+
+
+
+// -----------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark emailing
+// -----------------------------------------------------------------------------------------------------------------
+
+// Displays an email composition interface inside the application. Populates all the Mail fields.
+- (void) composeEmailAndDisplaySheet
+{
+	MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+	mailViewController.mailComposeDelegate = self;
+	
+	[mailViewController setSubject:@"We should hire Leonhard."];
+	
+	//	Set up recipients
+	//	NSArray *ccRecipients = [NSArray arrayWithObjects:@"jan@cs.rwth-aachen.de", nil];
+	//	[picker setToRecipients:toRecipients];
+		
+	// Fill out the email body text
+	NSString *emailBody = @"Look at this nice demo, this really deserves a WWDC ticket: http://www.lichtschlag.net/wwdcdemo/package.zip";
+	[mailViewController setMessageBody:emailBody isHTML:NO];
+	
+//	[self presentModalViewController:picker animated:YES];
+	[self presentViewController:mailViewController animated:YES completion:nil];
+}
+
+
+- (void) mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

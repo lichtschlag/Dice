@@ -154,6 +154,7 @@
 		3FDCF74714F820C200FB639B /* btQuickprof.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCF6C314F820C200FB639B /* btQuickprof.cpp */; };
 		3FDCF74814F820C200FB639B /* btSerializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCF6C714F820C200FB639B /* btSerializer.cpp */; };
 		3FDCF74914F820C200FB639B /* VERSION.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FDCF6CD14F820C200FB639B /* VERSION.txt */; };
+		3FE19CE9172C8AE40055DEDD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE19CE8172C8AE40055DEDD /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -492,6 +493,7 @@
 		3FDCF6CB14F820C200FB639B /* btTransformUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btTransformUtil.h; sourceTree = "<group>"; };
 		3FDCF6CC14F820C200FB639B /* btVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btVector3.h; sourceTree = "<group>"; };
 		3FDCF6CD14F820C200FB639B /* VERSION.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION.txt; sourceTree = "<group>"; };
+		3FE19CE8172C8AE40055DEDD /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -499,6 +501,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE19CE9172C8AE40055DEDD /* MessageUI.framework in Frameworks */,
 				3F7ACD2A14FD11930033A7E7 /* CoreMotion.framework in Frameworks */,
 				3FDCF56214F7F74800FB639B /* UIKit.framework in Frameworks */,
 				3FDCF56414F7F74800FB639B /* Foundation.framework in Frameworks */,
@@ -550,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				3FDCF58C14F820C100FB639B /* Bullet */,
+				3FE19CE8172C8AE40055DEDD /* MessageUI.framework */,
 				3F7ACD2914FD11930033A7E7 /* CoreMotion.framework */,
 				3FDCF56114F7F74800FB639B /* UIKit.framework */,
 				3FDCF56314F7F74800FB639B /* Foundation.framework */,
@@ -1323,6 +1327,7 @@
 				GCC_PREFIX_HEADER = "DiceMobile/DiceMobile-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "DiceMobile/DiceMobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1335,6 +1340,7 @@
 				GCC_PREFIX_HEADER = "DiceMobile/DiceMobile-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "DiceMobile/DiceMobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

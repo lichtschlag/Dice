@@ -1,29 +1,106 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1906" systemVersion="11A511" targetRuntime="iOS.CocoaTouch.iPad" nextObjectID="6" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
     <dependencies>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="902"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
         <scene sceneID="4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="DMViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5" customClass="GLKView">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PiO-Ba-EFo">
+                                <rect key="frame" x="78" y="954" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="userDidTapShareButton:" destination="2" eventType="touchUpInside" id="DSM-Zu-t5P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mQ4-Hz-29h">
+                                <rect key="frame" x="20" y="954" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Info">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="userDidTapInfoButton:" destination="2" eventType="touchUpInside" id="E3K-dV-sIP"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="FsW-i9-T7A" appends="YES" id="diF-7H-apv"/>
+                            <outletCollection property="gestureRecognizers" destination="E2B-KE-GhN" appends="YES" id="X6e-Lt-9dH"/>
+                            <outletCollection property="gestureRecognizers" destination="TLB-vg-M0F" appends="YES" id="n5o-O6-5dB"/>
+                            <outletCollection property="gestureRecognizers" destination="Hpu-EK-jz7" appends="YES" id="aGo-6d-uae"/>
+                            <outletCollection property="gestureRecognizers" destination="aAz-6d-JpQ" appends="YES" id="JWo-Vt-zA7"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="infoButton" destination="mQ4-Hz-29h" id="jdi-rE-9aP"/>
+                        <outlet property="shareButton" destination="PiO-Ba-EFo" id="PgL-Fn-tYU"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="FsW-i9-T7A" userLabel="Swipe Right Gesture Recognizer">
+                    <connections>
+                        <action selector="userDidSwipeRight:" destination="2" id="qqD-9z-Bak"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="TLB-vg-M0F" userLabel="Swipe Left Gesture Recognizer">
+                    <connections>
+                        <action selector="userDidSwipeLeft:" destination="2" id="Ntl-jO-uGo"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="up" id="Hpu-EK-jz7" userLabel="Swipe Up Gesture Recognizer">
+                    <connections>
+                        <action selector="userDidSwipeUp:" destination="2" id="WVa-Rg-z9I"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="aAz-6d-JpQ" userLabel="Swipe Down Gesture Recognizer">
+                    <connections>
+                        <action selector="userDidSwipeDown:" destination="2" id="gk0-iB-Rgu"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <tapGestureRecognizer id="E2B-KE-GhN">
+                    <connections>
+                        <action selector="userDidTap:" destination="2" id="vsk-3t-OdA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="159" y="-60"/>
         </scene>
     </scenes>
     <classes>
-        <class className="GLKView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GLKView.h"/>
+        <class className="DMViewController" superclassName="GLKViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DMViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="delegate"/>
+                <relationship kind="action" name="userDidSwipeDown:" candidateClass="UIGestureRecognizer"/>
+                <relationship kind="action" name="userDidSwipeLeft:" candidateClass="UIGestureRecognizer"/>
+                <relationship kind="action" name="userDidSwipeRight:" candidateClass="UIGestureRecognizer"/>
+                <relationship kind="action" name="userDidSwipeUp:" candidateClass="UIGestureRecognizer"/>
+                <relationship kind="action" name="userDidTap:" candidateClass="UIGestureRecognizer"/>
+                <relationship kind="action" name="userDidTapInfoButton:"/>
+                <relationship kind="action" name="userDidTapShareButton:"/>
+                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
             </relationships>
         </class>
     </classes>
