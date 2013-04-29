@@ -18,42 +18,42 @@ GLfloat gCubeVertexData[6*6*8] =
 {
     // Data layout for each line below is:
     // positionX, positionY, positionZ,     normalX, normalY, normalZ,		tex0.x, tex0.y
-	1.0f,-1.0f,-1.0f,		  1.0f, 0.0f, 0.0f,			0.5f, 0.0f,		// RIGHT FACE (ok)
+	1.0f,-1.0f,-1.0f,		  1.0f, 0.0f, 0.0f,			0.5f, 0.0f,		// RIGHT FACE
     1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
     1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.0f,	
     1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.0f,	
     1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
     1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.33f,
 	
-     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.33f,	// TOP FACE (ok)
+     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.33f,	// TOP FACE
     -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,
      1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,	
      1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,	
     -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,
     -1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.0f,	
     
-    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.66f,	// LEFT FACE (ok)
+    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.66f,	// LEFT FACE
     -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.33f,
     -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.66f,
     -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.66f,
     -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.33f,
     -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.33f,
     
-    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.33f,	// BOTTOM FACE (ok)
+    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.33f,	// BOTTOM FACE
      1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.33f,
     -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.66f,
     -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.66f,
      1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.33f,
      1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.66f,
     
-     1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 1.0f,		// FRONT FACE (ok)
+     1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 1.0f,		// FRONT FACE
     -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
      1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.66f,
      1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.66f,
     -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
     -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 0.66f,
     
-	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 0.66f,	// BACK FACE (ok)
+	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 0.66f,	// BACK FACE
 	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 0.66f,
 	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 1.0f,
 	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 1.0f,
@@ -85,7 +85,7 @@ typedef NS_ENUM(NSInteger, L2RBoxFace)
 };
 
 
-const NSTimeInterval kAnimationDuration	= 0.25;
+const NSTimeInterval kAnimationDuration	= 3.00;
 const NSTimeInterval kDiceMass			= 0.2;
 
 
@@ -487,17 +487,49 @@ const NSTimeInterval kDiceMass			= 0.2;
 		NSTimeInterval secondsSinceAnimationStart = [[NSDate date] timeIntervalSinceDate:self.animationStartDate];
 		BOOL animationHasEnded = (secondsSinceAnimationStart > kAnimationDuration);
 		
+		NSLog(@"%s porogress = %2.2f, ended = %d", __PRETTY_FUNCTION__, secondsSinceAnimationStart, animationHasEnded);
+
 		if (animationHasEnded)
 		{
-			[self setupBoxes];
-			
 			// switch state
+			[self setupBoxes];
 			self.currentState = L2RInteractionStateNormal;
 		}
 		else
 		{
 			// for all boxes, animate from their last safe position to the target position with time factor t
-//			[self setupBoxes];
+			float progress = (( kAnimationDuration - secondsSinceAnimationStart) / kAnimationDuration) ;
+			for (int i = 0; i < self.diceNumber; i++)
+			{
+				GLKMatrix4 startTransform;
+				GLKMatrix4 endTransform;
+				NSValue *transformAsValue = self.animationStartPositions[i];
+				[transformAsValue getValue:&startTransform];
+				transformAsValue = self.currentFacePositions[i];
+				[transformAsValue getValue:&endTransform];
+
+				// extract target from our data storage
+				GLKMatrix4 middleOfAnimationTransform = [self interpolateTransformBetweenStartTransform:startTransform
+																						   endTransform:endTransform
+																							   progress:progress];
+				
+				// feed into bullet
+				btTransform objectTransform;
+				objectTransform.setFromOpenGLMatrix(middleOfAnimationTransform.m);
+								
+				btDefaultMotionState* myMotionState = new btDefaultMotionState(objectTransform);
+				pBoxBodies->at(i)->setMotionState(myMotionState);
+//				btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape, localInertia);
+//				rbInfo.m_restitution	= 1.0;
+//				
+//				btRigidBody* boxBody	= new btRigidBody(rbInfo);
+//				pBoxBodies->push_back(boxBody);
+				
+//				// most applications shouldn't disable deactivation, but for this demo it is better.
+//				boxBody->setActivationState(DISABLE_DEACTIVATION);
+//				// add the body to the dynamics world
+//				pDynamicsWorld->addRigidBody(boxBody);
+			}
 		}
 	}
 }
@@ -557,7 +589,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 	for (int i = 0; i < self.diceNumber; i++)
 	{
 		pBoxBodies->at(i)->getCenterOfMassTransform().getOpenGLMatrix(objectTransform);
-		GLKMatrix4 objectTransformMatrix = GLKMatrix4MakeWithArray(objectTransform);
+		GLKMatrix4 objectTransformMatrix	= GLKMatrix4MakeWithArray(objectTransform);
 		
 		GLKMatrix4 cameraTransformMatrix	= GLKMatrix4MakeTranslation(0.0f, 0.0f, -30.0f);
 		self.objectEffect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransformMatrix, objectTransformMatrix);
@@ -1036,9 +1068,49 @@ const NSTimeInterval kDiceMass			= 0.2;
 											endTransform:(GLKMatrix4)endTransform
 												progress:(float)progress
 {
-	return endTransform;
+	progress = MIN(1.0f, progress);
+	progress = MAX(0.0f, progress);
+	
+	// split into position and rotational aspects
+//	GLKMatrix4 startTranslation = GLKMatrix4GetTranslation(startTransform);
+	GLKVector4 startTranslation = GLKMatrix4GetColumn(startTransform, 3);
+//	GLKMatrix4 endTranslation	= GLKMatrix4GetTranslation(endTransform);
+	GLKVector4 endTranslation	= GLKMatrix4GetColumn(endTransform, 3);
+
+	GLKMatrix4 startRotation	= GLKMatrix4GetRotation(startTransform);
+	GLKMatrix4 endRotation		= GLKMatrix4GetRotation(endTransform);
+	
+	// interpolate between the translative part linearly
+	// that is middle = start + (end-start) * progress
+	GLKVector4 middleTranslation= GLKVector4Lerp(startTranslation, endTranslation, progress);
+	
+	// interpolate between the rotational part with a SLERP
+	// TODO: test if I do need to the reduction beforehand
+	GLKQuaternion startQuart	= GLKQuaternionMakeWithMatrix4(startRotation);
+	GLKQuaternion endQuart		= GLKQuaternionMakeWithMatrix4(endRotation);
+	
+	GLKQuaternion middleQuart	= GLKQuaternionSlerp( startQuart, endQuart, progress );
+	
+	// combine and return
+	GLKMatrix4 middleTransform	= GLKMatrix4MakeWithQuaternion(middleQuart);
+	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, middleTranslation);
+	return middleTransform;
 }
 
+//
+//GLKMatrix4 GLKMatrix4GetTranslation(GLKMatrix4 matrix)
+//{
+//	GLKVector4 translationVector = GLKMatrix4GetColumn(matrix, 3);
+//	return GLKMatrix4MakeTranslation(translationVector.x, translationVector.y, translationVector.z);
+//}
+
+
+GLKMatrix4 GLKMatrix4GetRotation(GLKMatrix4 matrix)
+{
+	GLKMatrix4 returnMatrix = matrix;
+	GLKMatrix4SetColumn(returnMatrix, 3, GLKVector4Make(0, 0, 0, 1));
+	return returnMatrix;
+}
 
 
 @end
