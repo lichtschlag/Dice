@@ -487,7 +487,6 @@ const NSTimeInterval kDiceMass			= 0.2;
 		NSTimeInterval secondsSinceAnimationStart = [[NSDate date] timeIntervalSinceDate:self.animationStartDate];
 		BOOL animationHasEnded = (secondsSinceAnimationStart > kAnimationDuration);
 		
-		NSLog(@"%s porogress = %2.2f, ended = %d", __PRETTY_FUNCTION__, secondsSinceAnimationStart, animationHasEnded);
 
 		if (animationHasEnded)
 		{
@@ -498,7 +497,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 		else
 		{
 			// for all boxes, animate from their last safe position to the target position with time factor t
-			float progress = (( kAnimationDuration - secondsSinceAnimationStart) / kAnimationDuration) ;
+			float progress = ( secondsSinceAnimationStart / kAnimationDuration) ;
 			for (int i = 0; i < self.diceNumber; i++)
 			{
 				GLKMatrix4 startTransform;
@@ -519,16 +518,6 @@ const NSTimeInterval kDiceMass			= 0.2;
 								
 				btDefaultMotionState* myMotionState = new btDefaultMotionState(objectTransform);
 				pBoxBodies->at(i)->setMotionState(myMotionState);
-//				btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape, localInertia);
-//				rbInfo.m_restitution	= 1.0;
-//				
-//				btRigidBody* boxBody	= new btRigidBody(rbInfo);
-//				pBoxBodies->push_back(boxBody);
-				
-//				// most applications shouldn't disable deactivation, but for this demo it is better.
-//				boxBody->setActivationState(DISABLE_DEACTIVATION);
-//				// add the body to the dynamics world
-//				pDynamicsWorld->addRigidBody(boxBody);
 			}
 		}
 	}
@@ -1072,13 +1061,11 @@ const NSTimeInterval kDiceMass			= 0.2;
 	progress = MAX(0.0f, progress);
 	
 	// split into position and rotational aspects
-//	GLKMatrix4 startTranslation = GLKMatrix4GetTranslation(startTransform);
 	GLKVector4 startTranslation = GLKMatrix4GetColumn(startTransform, 3);
-//	GLKMatrix4 endTranslation	= GLKMatrix4GetTranslation(endTransform);
 	GLKVector4 endTranslation	= GLKMatrix4GetColumn(endTransform, 3);
 
-	GLKMatrix4 startRotation	= GLKMatrix4GetRotation(startTransform);
-	GLKMatrix4 endRotation		= GLKMatrix4GetRotation(endTransform);
+//	GLKMatrix4 startRotation	= GLKMatrix4GetRotation(startTransform);
+//	GLKMatrix4 endRotation		= GLKMatrix4GetRotation(endTransform);
 	
 	// interpolate between the translative part linearly
 	// that is middle = start + (end-start) * progress
@@ -1086,14 +1073,27 @@ const NSTimeInterval kDiceMass			= 0.2;
 	
 	// interpolate between the rotational part with a SLERP
 	// TODO: test if I do need to the reduction beforehand
-	GLKQuaternion startQuart	= GLKQuaternionMakeWithMatrix4(startRotation);
-	GLKQuaternion endQuart		= GLKQuaternionMakeWithMatrix4(endRotation);
+	GLKQuaternion startQuart	= GLKQuaternionMakeWithMatrix4(startTransform);
+	GLKQuaternion endQuart		= GLKQuaternionMakeWithMatrix4(endTransform);
 	
 	GLKQuaternion middleQuart	= GLKQuaternionSlerp( startQuart, endQuart, progress );
 	
 	// combine and return
-	GLKMatrix4 middleTransform	= GLKMatrix4MakeWithQuaternion(middleQuart);
+//	GLKMatrix4 middleTransform	= startTransform;
+//	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, middleTranslation);
+
+//	GLKMatrix4SetColumn(middleTransform, 3, middleTranslation);
+
+	
+//	GLKMatrix4 middleTransform	=
+//	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, GLKVector4Negate(startTranslation));
+//	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, middleTranslation);
+	
+	GLKMatrix4 middleTransform	= GLKMatrix4Identity;
 	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, middleTranslation);
+	middleTransform	= GLKMatrix4Multiply(middleTransform, GLKMatrix4MakeWithQuaternion(middleQuart));
+//	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, GLKVector4Negate(startTranslation));
+
 	return middleTransform;
 }
 
