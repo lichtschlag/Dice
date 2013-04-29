@@ -18,47 +18,47 @@ GLfloat gCubeVertexData[6*6*8] =
 {
     // Data layout for each line below is:
     // positionX, positionY, positionZ,     normalX, normalY, normalZ,		tex0.x, tex0.y
-    1.0f,-1.0f,-1.0f,			1.0f, 0.0f, 0.0f,			0.0f, 0.0f,
-    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.0f,
-    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.33f,
-    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.33f,
-    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.0f,
-    1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
+    1.0f,-1.0f,-1.0f,		  1.0f, 0.0f, 0.0f,			0.0f, 0.0f,		// LR,	RIGHT FACE
+    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.0f,		// UR
+    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.33f,	// BLR
+    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.33f,	// BLR
+    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.0f,		// UR
+    1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.33f,	// BUR
     
-     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.0f,
-    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,
-     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,
-     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,
-    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,
-    -1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.33f,
+     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.0f,		// UR,	TOP FACE
+    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,		// UL
+     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,	// BUR
+     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,	// BUR
+    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,		// UL
+    -1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.33f,	// BUL
     
-    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,			0.0f, 0.33f,
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
-    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,			0.0f, 0.66f,
-    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,			0.0f, 0.66f,
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
-    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,			0.5f, 0.66f,
+    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.33f,	// LEFT FACE
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.33f,
+    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.66f,
+    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.66f,
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.33f,
+    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.66f,
     
-    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,			0.5f, 0.33f,
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,			1.0f, 0.33f,
-    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,			0.5f, 0.66f,
-    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,			0.5f, 0.66f,
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,			1.0f, 0.33f,
-     1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,			1.0f, 0.66f,
+    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.33f,	// BOTTOM FACE (OK)
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.33f,
+    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.66f,
+    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.66f,
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.33f,
+     1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.66f,
     
-     1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.0f, 0.66f,
-    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.5f, 0.66f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.0f, 1.0f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.0f, 1.0f,
-    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.5f, 0.66f,
-    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,			0.5f, 1.0f,
+     1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 0.66f,	// FRONT FACE
+    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.66f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
+    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.66f,
+    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 1.0f,
     
-	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			0.5f, 0.66f,
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			1.0f, 0.66f,
-	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			0.5f, 1.0f,
-	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			0.5f, 1.0f,
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			1.0f, 0.66f,
-	-1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,			1.0f, 1.0
+	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 0.66f,	// BACK FACE
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 0.66f,
+	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 1.0f,
+	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 1.0f,
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 0.66f,
+	-1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 1.0f
 };
 
 
@@ -66,12 +66,27 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 {
     L2RInteractionStateNormal,
 	L2RInteractionStateGravity,
-	L2RInteractionStateAnimatingToNormal,
-    L2RInteractionStateRotatingLeft,
+	L2RInteractionStateAnimatingToNormal,	// I could just use one animation state for arbitrary start and ends
+    L2RInteractionStateRotatingLeft,		// but this allows for different animation styles
     L2RInteractionStateRotatingRight,
     L2RInteractionStateRotatingUp,
     L2RInteractionStateRotatingDown
 };
+
+
+typedef NS_ENUM(NSInteger, L2RBoxFace)
+{
+    L2RBoxFaceFront,
+	L2RBoxFaceBack,
+    L2RBoxFaceLeft,
+	L2RBoxFaceRight,
+    L2RBoxFaceTop,
+	L2RBoxFaceBottom
+};
+
+
+const NSTimeInterval kAnimationDuration	= 2.25;
+const NSTimeInterval kDiceMass			= 0.2;
 
 
 // ===============================================================================================================
@@ -104,7 +119,13 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 @property (strong, nonatomic) GLKSkyboxEffect *environmentEffect;
 @property int diceNumber;
 @property (strong) CMMotionManager *motionManager;
+
 @property			L2RInteractionState currentState;
+@property			L2RInteractionState currentFace;  // when an animation starts currentFace points to target
+@property			NSDate*			animationStartDate;
+@property			NSMutableArray*	animationStartPositions;
+@property			NSMutableArray*	currentFacePositions;
+
 
 - (void) setupGL;
 - (void) setupScene;
@@ -139,6 +160,8 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 
 	self.diceNumber = 16;
 	self.currentState = L2RInteractionStateNormal;
+	self.currentFace  = L2RBoxFaceFront;
+	[self calculateCurrentFacePositions];
 	
 	[self setupButtons];
 	[self setupGL];
@@ -189,7 +212,7 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 	
 	// load texture data
 	NSError *outError = nil;
-	NSURL *textureURL				= [[NSBundle mainBundle] URLForResource:@"DiceSides" withExtension:@"jpg"];
+	NSURL *textureURL				= [[NSBundle mainBundle] URLForResource:@"DiceSidesWoW" withExtension:@"jpg"];
 	NSDictionary *options			= [NSDictionary dictionaryWithObjectsAndKeys:
 									   [NSNumber numberWithBool:NO],  GLKTextureLoaderGenerateMipmaps,
 									   [NSNumber numberWithBool:YES], GLKTextureLoaderOriginBottomLeft, nil];
@@ -255,7 +278,7 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 	// create 6 planes / half spaces (world contraints)
 	pWorldPlanes = new btAlignedObjectArray<btRigidBody*>();
 	pCollisionShapes = new btAlignedObjectArray<btCollisionShape*>();
-	btBoxShape* worldBoxShape = new btBoxShape( btVector3(10, 10, 10) );		// world constraints
+	btBoxShape* worldBoxShape = new btBoxShape( btVector3(10, 10, 10) );		// world constraints helper object
 	for (int i = 0; i < 6; i++)
 	{
 		btVector4 planeEq;
@@ -284,27 +307,59 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 	worldBoxShape = NULL;
 	
 	// create the some boxes
-	pBoxBodies = new btAlignedObjectArray<btRigidBody*>();
+	[self setupBoxes];
+}
 
+
+- (void) setupBoxes
+{
+	// release bodies
+	if (pBoxBodies)
+	{
+		for (int i = 0; i < self.diceNumber; i++)
+		{
+			btRigidBody* boxBody = pBoxBodies->at(i);
+			pDynamicsWorld->removeRigidBody(boxBody);
+		}
+
+		pBoxBodies->clear();
+		delete pBoxBodies;
+		pBoxBodies = NULL;
+	}
+	
+	// and add them again
+	// I do it in this hard-reset way, because otherwise the inertia of a box carries over from it's last simulated state
+	pBoxBodies = new btAlignedObjectArray<btRigidBody*>();
+	
 	// create collision shape that all dice share
-	btCollisionShape* boxShape = new btBoxShape( btVector3(1, 1, 1) );	
-	btScalar mass = 0.20;		// positive mass means dynamic/moving object
+	btCollisionShape* boxShape = new btBoxShape( btVector3(1, 1, 1) );
+	btScalar mass = kDiceMass;		// positive mass means dynamic/moving object
 	btVector3 localInertia(0, 0, 0);
 	boxShape->calculateLocalInertia(mass, localInertia);
 	pCollisionShapes->push_back(boxShape);
-
+	
 	for (int i = 0; i < self.diceNumber; i++)
 	{
-		btTransform objectTransform;
-		objectTransform.setIdentity();
-		float stride = 2.0;
-		div_t division = div(i, 4);
-		objectTransform.setOrigin( btVector3(division.rem * stride - 1.5*stride, division.quot * stride - 1.5*stride, 0) );
+		// extract target from our data storage
+		NSValue* transformAsValue = self.currentFacePositions[i];
+		GLKMatrix4 objectTransformMatrix;
+		[transformAsValue getValue:&objectTransformMatrix];
 
+		// feed into bullet
+		btTransform objectTransform;
+		objectTransform.setFromOpenGLMatrix(objectTransformMatrix.m);
+		
+		
+//		float stride = 2.0;
+//		div_t division = div(i, 4);
+//		objectTransform.setOrigin( btVector3(division.rem  * stride - 1.5*stride,
+//											 division.quot * stride - 1.5*stride,
+//											 0) );
+		
 		btDefaultMotionState* myMotionState = new btDefaultMotionState(objectTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape, localInertia);
 		rbInfo.m_restitution	= 1.0;
-
+		
 		btRigidBody* boxBody	= new btRigidBody(rbInfo);
 		pBoxBodies->push_back(boxBody);
 		
@@ -430,8 +485,21 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 	// animate
 	else if (self.currentState  != L2RInteractionStateNormal)
 	{
-		// for all boxes, animate from their last safe position to the target position with time factor t
-		self.currentState = L2RInteractionStateNormal;
+		// let's figure out how far we are in the current animation
+		NSTimeInterval secondsSinceAnimationStart = [[NSDate date] timeIntervalSinceDate:self.animationStartDate];
+		BOOL animationHasEnded = (secondsSinceAnimationStart > kAnimationDuration);
+		
+		if (animationHasEnded)
+		{
+			[self setupBoxes];
+			
+			// switch state
+			self.currentState = L2RInteractionStateNormal;
+		}
+		else
+		{
+			// for all boxes, animate from their last safe position to the target position with time factor t
+		}
 	}
 }
 
@@ -582,35 +650,50 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 		self.currentState = L2RInteractionStateGravity;
 	
 	else if (self.currentState == L2RInteractionStateGravity)
+	{
 		self.currentState = L2RInteractionStateAnimatingToNormal;
+		[self prepareForAnimationStart];
+	}
 }
 
 
 - (IBAction) userDidSwipeRight:(UIGestureRecognizer *)sender;
 {
 	if (self.currentState == L2RInteractionStateNormal)
+	{
 		self.currentState = L2RInteractionStateRotatingRight;
+		[self prepareForAnimationStart];
+	}
 }
 
 
 - (IBAction) userDidSwipeLeft:(UIGestureRecognizer *)sender;
 {
 	if (self.currentState == L2RInteractionStateNormal)
+	{
 		self.currentState = L2RInteractionStateRotatingLeft;
+		[self prepareForAnimationStart];
+	}
 }
 
 
 - (IBAction) userDidSwipeUp:(UIGestureRecognizer *)sender;
 {
 	if (self.currentState == L2RInteractionStateNormal)
+	{
 		self.currentState = L2RInteractionStateRotatingUp;
+		[self prepareForAnimationStart];
+	}
 }
 
 
 - (IBAction) userDidSwipeDown:(UIGestureRecognizer *)sender;
 {
 	if (self.currentState == L2RInteractionStateNormal)
+	{
 		self.currentState = L2RInteractionStateRotatingDown;
+		[self prepareForAnimationStart];
+	}
 }
 
 
@@ -738,15 +821,10 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 	
 	[mailViewController setSubject:@"We should hire Leonhard."];
 	
-	//	Set up recipients
-	//	NSArray *ccRecipients = [NSArray arrayWithObjects:@"jan@cs.rwth-aachen.de", nil];
-	//	[picker setToRecipients:toRecipients];
-		
 	// Fill out the email body text
 	NSString *emailBody = @"Look at this nice demo, this really deserves a WWDC ticket: http://www.lichtschlag.net/wwdcdemo/package.zip";
 	[mailViewController setMessageBody:emailBody isHTML:NO];
 	
-//	[self presentModalViewController:picker animated:YES];
 	[self presentViewController:mailViewController animated:YES completion:nil];
 }
 
@@ -755,6 +833,98 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+// -----------------------------------------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark Animation and Position Helpers
+// -----------------------------------------------------------------------------------------------------------------
+
+- (void) prepareForAnimationStart
+{
+	// captures current time and the positions of all blocks
+	self.animationStartDate = [NSDate date];
+	self.animationStartPositions = [NSMutableArray array];
+
+	float objectTransform[16];  // helper data object
+	for (int i = 0; i < self.diceNumber; i++)
+	{
+		pBoxBodies->at(i)->getCenterOfMassTransform().getOpenGLMatrix(objectTransform);
+		GLKMatrix4 objectTransformMatrix = GLKMatrix4MakeWithArray(objectTransform);
+		
+		NSValue* transformAsValue = [NSValue valueWithBytes:&objectTransformMatrix
+												   objCType:@encode(GLKMatrix4)];
+		[self.animationStartPositions addObject:transformAsValue];
+	}
+}
+
+
+- (void) calculateCurrentFacePositions
+{
+	self.currentFacePositions = [NSMutableArray array];
+	
+	btVector3 rotationAxis = btVector3(0.0, 1.0, 0.0);
+	btQuaternion rotationAsQuarterion;
+
+	// rotation in dependant on target face
+	switch (self.currentFace)
+	{
+		case L2RBoxFaceFront:
+			rotationAsQuarterion = btQuaternion(rotationAxis, 0.0);
+			break;
+		case L2RBoxFaceBack:
+			rotationAsQuarterion = btQuaternion(rotationAxis, M_PI);
+			break;
+		case L2RBoxFaceRight:
+			rotationAsQuarterion = btQuaternion(rotationAxis, M_PI_2);
+			break;
+		case L2RBoxFaceLeft:
+			rotationAsQuarterion = btQuaternion(rotationAxis, -M_PI_2);
+			break;
+		case L2RBoxFaceTop:
+			rotationAxis = btVector3(1.0, 0.0, 0.0);
+			rotationAsQuarterion = btQuaternion(rotationAxis, M_PI_2);
+			break;
+		case L2RBoxFaceBottom:
+			rotationAxis = btVector3(0.0, 1.0, 0.0);
+			rotationAsQuarterion = btQuaternion(rotationAxis, -M_PI_2);
+			break;
+			
+		default:
+			NSAssert(NO, @"Unexpected Switch statement");
+			break;
+	}
+	
+	// transform is dependant on dice id
+	for (int i = 0; i < self.diceNumber; i++)
+	{
+		btTransform objectTransform;
+		objectTransform.setIdentity();
+		float stride = 2.0;
+		div_t division = div(i, 4);
+		objectTransform.setRotation(rotationAsQuarterion);
+		objectTransform.setOrigin( btVector3(division.rem  * stride - 1.5*stride,
+											 division.quot * stride - 1.5*stride,
+											 0) );
+
+		float objectTransformData[16];		// helper data object
+		objectTransform.getOpenGLMatrix(objectTransformData);
+		GLKMatrix4 objectTransformMatrix = GLKMatrix4MakeWithArray(objectTransformData);
+	
+		NSValue* transformAsValue = [NSValue valueWithBytes:&objectTransformMatrix
+												   objCType:@encode(GLKMatrix4)];
+		[self.currentFacePositions addObject:transformAsValue];
+	}
+}
+
+
+- (GLKMatrix4) interpolateTransformBetweenStartTransform:(GLKMatrix4)startTransform
+											endTransform:(GLKMatrix4)endTransform
+												progress:(float)progress
+{
+	return startTransform;
+}
+
 
 
 @end
