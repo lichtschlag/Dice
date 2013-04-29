@@ -99,13 +99,13 @@ const NSTimeInterval kDiceMass			= 0.2;
 	// Physics
 	btDiscreteDynamicsWorld					*pDynamicsWorld;
 	
-	btBroadphaseInterface						*pBroadphase;
-	btCollisionConfiguration					*pCollisionConfig;
-	btCollisionDispatcher						*pCollisionDispatcher;
+	btBroadphaseInterface					*pBroadphase;
+	btCollisionConfiguration				*pCollisionConfig;
+	btCollisionDispatcher					*pCollisionDispatcher;
 	btSequentialImpulseConstraintSolver		*pConstraintSolver;
 	
-	btAlignedObjectArray<btRigidBody*>			*pBoxBodies;
-	btAlignedObjectArray<btRigidBody*>			*pWorldPlanes;
+	btAlignedObjectArray<btRigidBody*>		*pBoxBodies;
+	btAlignedObjectArray<btRigidBody*>		*pWorldPlanes;
 	btAlignedObjectArray<btCollisionShape*>	*pCollisionShapes;
 	
 	// motion filtering
@@ -873,20 +873,20 @@ const NSTimeInterval kDiceMass			= 0.2;
 			rotationAsQuarterion = btQuaternion(rotationAxis, 0.0);
 			break;
 		case L2RBoxFaceBack:
-			rotationAsQuarterion = btQuaternion(rotationAxis, M_PI);
+			rotationAsQuarterion = btQuaternion(rotationAxis,  M_PI);
 			break;
 		case L2RBoxFaceRight:
-			rotationAsQuarterion = btQuaternion(rotationAxis, M_PI_2);
+			rotationAsQuarterion = btQuaternion(rotationAxis, -M_PI_2);
 			break;
 		case L2RBoxFaceLeft:
-			rotationAsQuarterion = btQuaternion(rotationAxis, -M_PI_2);
+			rotationAsQuarterion = btQuaternion(rotationAxis,  M_PI_2);
 			break;
 		case L2RBoxFaceTop:
 			rotationAxis = btVector3(1.0, 0.0, 0.0);
-			rotationAsQuarterion = btQuaternion(rotationAxis, M_PI_2);
+			rotationAsQuarterion = btQuaternion(rotationAxis,  M_PI_2);
 			break;
 		case L2RBoxFaceBottom:
-			rotationAxis = btVector3(0.0, 1.0, 0.0);
+			rotationAxis = btVector3(1.0, 0.0, 0.0);
 			rotationAsQuarterion = btQuaternion(rotationAxis, -M_PI_2);
 			break;
 			
