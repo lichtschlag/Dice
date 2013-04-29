@@ -85,7 +85,7 @@ typedef NS_ENUM(NSInteger, L2RBoxFace)
 };
 
 
-const NSTimeInterval kAnimationDuration	= 2.25;
+const NSTimeInterval kAnimationDuration	= 0.25;
 const NSTimeInterval kDiceMass			= 0.2;
 
 
@@ -467,8 +467,6 @@ const NSTimeInterval kDiceMass			= 0.2;
 	// move physics forward
 	if (self.currentState  == L2RInteractionStateGravity)
 	{
-		// TODO: consider slowing down the first gravity impact
-		
 		float updateRate = 1 / self.timeSinceLastUpdate;
 		pDynamicsWorld->stepSimulation(updateRate, 2, 1.0/150.0); // slow motion, because it's more fun
 
@@ -499,6 +497,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 		else
 		{
 			// for all boxes, animate from their last safe position to the target position with time factor t
+//			[self setupBoxes];
 		}
 	}
 }
@@ -652,16 +651,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 	else if (self.currentState == L2RInteractionStateGravity)
 	{
 		self.currentState = L2RInteractionStateAnimatingToNormal;
-		[self prepareForAnimationStart];
-	}
-}
-
-
-- (IBAction) userDidSwipeRight:(UIGestureRecognizer *)sender;
-{
-	if (self.currentState == L2RInteractionStateNormal)
-	{
-		self.currentState = L2RInteractionStateRotatingRight;
+		self.currentFace = L2RBoxFaceFront;
 		[self prepareForAnimationStart];
 	}
 }
@@ -669,30 +659,152 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 - (IBAction) userDidSwipeLeft:(UIGestureRecognizer *)sender;
 {
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+
 	if (self.currentState == L2RInteractionStateNormal)
 	{
-		self.currentState = L2RInteractionStateRotatingLeft;
+		self.currentState = L2RInteractionStateRotatingRight;
 		[self prepareForAnimationStart];
+		switch (self.currentFace)
+		{
+			case L2RBoxFaceFront:
+				self.currentFace = L2RBoxFaceRight;
+				break;
+			case L2RBoxFaceRight:
+				self.currentFace = L2RBoxFaceBack;
+				break;
+			case L2RBoxFaceBack:
+				self.currentFace = L2RBoxFaceLeft;
+				break;
+			case L2RBoxFaceLeft:
+				self.currentFace = L2RBoxFaceFront;
+				break;
+			case L2RBoxFaceTop:
+				self.currentFace = L2RBoxFaceRight;
+				break;
+			case L2RBoxFaceBottom:
+				self.currentFace = L2RBoxFaceRight;
+				break;
+				
+			default:
+				NSAssert(NO, @"Unexpected switch statement");
+				break;
+		}
+		[self calculateCurrentFacePositions];
 	}
 }
 
 
-- (IBAction) userDidSwipeUp:(UIGestureRecognizer *)sender;
+- (IBAction) userDidSwipeRight:(UIGestureRecognizer *)sender;
 {
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+
 	if (self.currentState == L2RInteractionStateNormal)
 	{
-		self.currentState = L2RInteractionStateRotatingUp;
+		self.currentState = L2RInteractionStateRotatingLeft;
 		[self prepareForAnimationStart];
+		switch (self.currentFace)
+		{
+			case L2RBoxFaceFront:
+				self.currentFace = L2RBoxFaceLeft;
+				break;
+			case L2RBoxFaceRight:
+				self.currentFace = L2RBoxFaceFront;
+				break;
+			case L2RBoxFaceBack:
+				self.currentFace = L2RBoxFaceRight;
+				break;
+			case L2RBoxFaceLeft:
+				self.currentFace = L2RBoxFaceBack;
+				break;
+			case L2RBoxFaceTop:
+				self.currentFace = L2RBoxFaceLeft;
+				break;
+			case L2RBoxFaceBottom:
+				self.currentFace = L2RBoxFaceLeft;
+				break;
+				
+			default:
+				NSAssert(NO, @"Unexpected switch statement");
+				break;
+		}
+		[self calculateCurrentFacePositions];
 	}
 }
 
 
 - (IBAction) userDidSwipeDown:(UIGestureRecognizer *)sender;
 {
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+
+	if (self.currentState == L2RInteractionStateNormal)
+	{
+		self.currentState = L2RInteractionStateRotatingUp;
+		[self prepareForAnimationStart];
+		switch (self.currentFace)
+		{
+			case L2RBoxFaceFront:
+				self.currentFace = L2RBoxFaceTop;
+				break;
+			case L2RBoxFaceRight:
+				self.currentFace = L2RBoxFaceTop;
+				break;
+			case L2RBoxFaceBack:
+				self.currentFace = L2RBoxFaceTop;
+				break;
+			case L2RBoxFaceLeft:
+				self.currentFace = L2RBoxFaceTop;
+				break;
+			case L2RBoxFaceTop:
+				self.currentFace = L2RBoxFaceBack;
+				break;
+			case L2RBoxFaceBottom:
+				self.currentFace = L2RBoxFaceFront;
+				break;
+				
+			default:
+				NSAssert(NO, @"Unexpected switch statement");
+				break;
+		}
+		[self calculateCurrentFacePositions];
+	}
+}
+
+
+- (IBAction) userDidSwipeUp:(UIGestureRecognizer *)sender;
+{
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+
 	if (self.currentState == L2RInteractionStateNormal)
 	{
 		self.currentState = L2RInteractionStateRotatingDown;
 		[self prepareForAnimationStart];
+		switch (self.currentFace)
+		{
+			case L2RBoxFaceFront:
+				self.currentFace = L2RBoxFaceBottom;
+				break;
+			case L2RBoxFaceRight:
+				self.currentFace = L2RBoxFaceBottom;
+				break;
+			case L2RBoxFaceBack:
+				self.currentFace = L2RBoxFaceBottom;
+				break;
+			case L2RBoxFaceLeft:
+				self.currentFace = L2RBoxFaceBottom;
+				break;
+			case L2RBoxFaceTop:
+				self.currentFace = L2RBoxFaceFront;
+				break;
+			case L2RBoxFaceBottom:
+				self.currentFace = L2RBoxFaceBack;
+				break;
+				
+			default:
+				NSAssert(NO, @"Unexpected switch statement");
+				break;
+		}
+		[self calculateCurrentFacePositions];
 	}
 }
 
@@ -867,6 +979,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 	btQuaternion rotationAsQuarterion;
 
 	// rotation in dependant on target face
+	// the directions of rotations is dependant on the wayt he textures are layed out, and one should be able to
+	// insert an image here
 	switch (self.currentFace)
 	{
 		case L2RBoxFaceFront:
@@ -922,7 +1036,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 											endTransform:(GLKMatrix4)endTransform
 												progress:(float)progress
 {
-	return startTransform;
+	return endTransform;
 }
 
 
