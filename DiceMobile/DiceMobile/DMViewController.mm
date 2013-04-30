@@ -9,6 +9,7 @@
 #import "DMViewController.h"
 #import <CoreMotion/CoreMotion.h>
 #import "btBulletDynamicsCommon.h"
+#import <AudioToolbox/AudioServices.h>
 
 
 
@@ -92,7 +93,7 @@ typedef NS_ENUM(NSInteger, L2RBoxFace)
 const NSTimeInterval kAnimationDurationSplit		= 0.20;
 const NSTimeInterval kAnimationDurationRotation		= 0.60;
 const NSTimeInterval kAnimationDurationMerge		= 0.20;
-const NSTimeInterval kAnimationDurationCompression	= 0.65;
+const NSTimeInterval kAnimationDurationCompression	= 0.35;
 const NSTimeInterval kDiceMass			= 0.2;
 
 
@@ -132,6 +133,9 @@ const NSTimeInterval kDiceMass			= 0.2;
 @property			NSDate*			animationStartDate;
 @property			NSMutableArray*	animationStartPositions;
 @property			NSMutableArray*	currentFacePositions;
+
+@property	SystemSoundID audioEffect;
+
 
 
 - (void) setupGL;
@@ -180,6 +184,15 @@ const NSTimeInterval kDiceMass			= 0.2;
 	[self.motionManager startAccelerometerUpdates];
 	memset(gravity, 0, sizeof(gravity));
 	firstAccelerometerData = YES;
+	
+	// load a sound
+	NSURL *soundURL  = [[NSBundle mainBundle] URLForResource:@"klack" withExtension:@"m4a"];
+	SystemSoundID audioEffect;
+	OSStatus error = AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &audioEffect);
+	if (error == kAudioServicesNoError)
+	{
+		self.audioEffect = audioEffect;
+	}
 }
 
 
@@ -733,6 +746,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 			if (animationHasEnded)
 			{
 				self.currentState = L2RInteractionStateNormal;
+				AudioServicesPlaySystemSound(self.audioEffect);
 				[self setupBoxes];
 			}
 			break;
@@ -930,6 +944,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 		self.currentState = L2RInteractionStateAnimatingRightSplit;
 		[self prepareForAnimationStart];
 		[self calculateCurrentFacePositions];
+		AudioServicesPlaySystemSound(self.audioEffect);
+
 	}
 }
 
@@ -941,6 +957,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 		self.currentState = L2RInteractionStateAnimatingLeftSplit;
 		[self prepareForAnimationStart];
 		[self calculateCurrentFacePositions];
+		AudioServicesPlaySystemSound(self.audioEffect);
+
 	}
 }
 
@@ -952,6 +970,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 		self.currentState = L2RInteractionStateAnimatingUpSplit;
 		[self prepareForAnimationStart];
 		[self calculateCurrentFacePositions];
+		AudioServicesPlaySystemSound(self.audioEffect);
+
 	}
 }
 
@@ -963,6 +983,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 		self.currentState = L2RInteractionStateAnimatingDownSplit;
 		[self prepareForAnimationStart];
 		[self calculateCurrentFacePositions];
+		AudioServicesPlaySystemSound(self.audioEffect);
+
 	}
 }
 

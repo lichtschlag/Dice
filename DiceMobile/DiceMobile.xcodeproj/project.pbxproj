@@ -10,6 +10,8 @@
 		3F2135DF150104DE007048C4 /* EnvironmentCubeMap.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F2135DE150104DE007048C4 /* EnvironmentCubeMap.jpg */; };
 		3F519F1015178ECD00278CD0 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F519F0F15178ECD00278CD0 /* Icon-72@2x.png */; };
 		3F57A51014FD4F5B002F8D3F /* DiceSidesWoW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */; };
+		3F62897C173088D500EF7FC2 /* klack.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 3F62897B173088D500EF7FC2 /* klack.m4a */; };
+		3F62897E1730894300EF7FC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F62897D1730894300EF7FC2 /* AudioToolbox.framework */; };
 		3F7ACD2A14FD11930033A7E7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7ACD2914FD11930033A7E7 /* CoreMotion.framework */; };
 		3F9BDC0314FC69790076116C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9BDBFC14FC69790076116C /* Icon-72.png */; };
 		3F9BDC0414FC69790076116C /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9BDBFD14FC69790076116C /* Icon-Small-50.png */; };
@@ -161,6 +163,8 @@
 		3F2135DE150104DE007048C4 /* EnvironmentCubeMap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = EnvironmentCubeMap.jpg; sourceTree = "<group>"; };
 		3F519F0F15178ECD00278CD0 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DiceSidesWoW.jpg; sourceTree = "<group>"; };
+		3F62897B173088D500EF7FC2 /* klack.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = klack.m4a; sourceTree = "<group>"; };
+		3F62897D1730894300EF7FC2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3F7ACD2914FD11930033A7E7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3F9BDBFC14FC69790076116C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		3F9BDBFD14FC69790076116C /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -501,6 +505,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F62897E1730894300EF7FC2 /* AudioToolbox.framework in Frameworks */,
 				3FE19CE9172C8AE40055DEDD /* MessageUI.framework in Frameworks */,
 				3F7ACD2A14FD11930033A7E7 /* CoreMotion.framework in Frameworks */,
 				3FDCF56214F7F74800FB639B /* UIKit.framework in Frameworks */,
@@ -532,6 +537,7 @@
 		3FDCF55214F7F74700FB639B = {
 			isa = PBXGroup;
 			children = (
+				3F62897D1730894300EF7FC2 /* AudioToolbox.framework */,
 				3FDCF58914F7F7F100FB639B /* App Core */,
 				3FDCF58B14F7F83C00FB639B /* GL View */,
 				3FDCF58A14F7F82700FB639B /* Ressources */,
@@ -591,6 +597,7 @@
 		3FDCF58A14F7F82700FB639B /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				3F62897B173088D500EF7FC2 /* klack.m4a */,
 				3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */,
 				3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */,
 				3F2135DE150104DE007048C4 /* EnvironmentCubeMap.jpg */,
@@ -1105,6 +1112,7 @@
 				3F57A51014FD4F5B002F8D3F /* DiceSidesWoW.jpg in Resources */,
 				3FB3A7FD14FEC74A0007CA0C /* DiceSides.jpg in Resources */,
 				3F2135DF150104DE007048C4 /* EnvironmentCubeMap.jpg in Resources */,
+				3F62897C173088D500EF7FC2 /* klack.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
