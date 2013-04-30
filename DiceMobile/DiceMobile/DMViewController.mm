@@ -66,11 +66,13 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
 {
     L2RInteractionStateNormal,
 	L2RInteractionStateGravity,
-	L2RInteractionStateAnimatingToNormal,	// I could just use one animation state for arbitrary start and ends
-    L2RInteractionStateRotatingLeft,		// but this allows for different animation styles
-    L2RInteractionStateRotatingRight,
-    L2RInteractionStateRotatingUp,
-    L2RInteractionStateRotatingDown
+	L2RInteractionStateAnimatingCompression,	// I could just use one animation state for arbitrary start and ends
+    L2RInteractionStateAnimatingLeft,			// but this allows for different animation styles
+    L2RInteractionStateAnimatingRightSplit,
+    L2RInteractionStateAnimatingRightRotate,
+    L2RInteractionStateAnimatingUp,
+    L2RInteractionStateAnimatingDown,
+    L2RInteractionStateAnimatingMerge,
 };
 
 
@@ -84,8 +86,10 @@ typedef NS_ENUM(NSInteger, L2RBoxFace)
 	L2RBoxFaceBottom
 };
 
-
-const NSTimeInterval kAnimationDuration	= 3.00;
+const NSTimeInterval kAnimationDurationSplit		= 0.20;
+const NSTimeInterval kAnimationDurationRotation		= 0.60;
+const NSTimeInterval kAnimationDurationMerge		= 0.20;
+const NSTimeInterval kAnimationDurationCompression	= 2.00;
 const NSTimeInterval kDiceMass			= 0.2;
 
 
@@ -168,7 +172,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 	[self setupBullet];
 	[self setupScene];
 	
-	self.motionManager = [[CMMotionManager alloc] init]; // motionManager is an instance variable
+	self.motionManager = [[CMMotionManager alloc] init];
 	self.motionManager.accelerometerUpdateInterval = 0.16; // 60Hz
 	[self.motionManager startAccelerometerUpdates];
 	memset(gravity, 0, sizeof(gravity));
@@ -483,43 +487,152 @@ const NSTimeInterval kDiceMass			= 0.2;
 	// animate
 	else if (self.currentState  != L2RInteractionStateNormal)
 	{
-		// let's figure out how far we are in the current animation
-		NSTimeInterval secondsSinceAnimationStart = [[NSDate date] timeIntervalSinceDate:self.animationStartDate];
-		BOOL animationHasEnded = (secondsSinceAnimationStart > kAnimationDuration);
-		
+		[self animationStep];
+	}
+}
 
-		if (animationHasEnded)
-		{
-			// switch state
-			[self setupBoxes];
-			self.currentState = L2RInteractionStateNormal;
-		}
-		else
-		{
-			// for all boxes, animate from their last safe position to the target position with time factor t
-			float progress = ( secondsSinceAnimationStart / kAnimationDuration) ;
-			for (int i = 0; i < self.diceNumber; i++)
+
+- (void) animationStep
+{
+	// let's figure out how far we are in the current animation
+	NSTimeInterval secondsSinceAnimationStart = [[NSDate date] timeIntervalSinceDate:self.animationStartDate];
+
+	float progress = 0.0f;
+	BOOL animationHasEnded = NO;
+	
+	// for all boxes, animate from their last safe position to the target position with time factor t
+	switch (self.currentState)
+	{
+			// transform back from a gravity situation
+		case L2RInteractionStateAnimatingCompression:
+			
+			progress = ( secondsSinceAnimationStart / kAnimationDurationCompression );
+			[self animationSubStepWithTimeFactor:progress];
+			
+			animationHasEnded =  (progress > 1.0);
+			if (animationHasEnded)
 			{
-				GLKMatrix4 startTransform;
-				GLKMatrix4 endTransform;
-				NSValue *transformAsValue = self.animationStartPositions[i];
-				[transformAsValue getValue:&startTransform];
-				transformAsValue = self.currentFacePositions[i];
-				[transformAsValue getValue:&endTransform];
-
-				// extract target from our data storage
-				GLKMatrix4 middleOfAnimationTransform = [self interpolateTransformBetweenStartTransform:startTransform
-																						   endTransform:endTransform
-																							   progress:progress];
-				
-				// feed into bullet
-				btTransform objectTransform;
-				objectTransform.setFromOpenGLMatrix(middleOfAnimationTransform.m);
-								
-				btDefaultMotionState* myMotionState = new btDefaultMotionState(objectTransform);
-				pBoxBodies->at(i)->setMotionState(myMotionState);
+				[self setupBoxes];
+				self.currentState = L2RInteractionStateNormal;
 			}
-		}
+			
+			break;
+			
+		case L2RInteractionStateAnimatingDown:
+		case L2RInteractionStateAnimatingLeft:
+		case L2RInteractionStateAnimatingUp:
+			
+			progress = ( secondsSinceAnimationStart / (kAnimationDurationMerge+kAnimationDurationRotation+kAnimationDurationSplit) );
+			[self animationSubStepWithTimeFactor:progress];
+			
+			animationHasEnded =  (progress > 1.0);
+			if (animationHasEnded)
+			{
+				self.currentState = L2RInteractionStateNormal;
+				[self setupBoxes];
+			}
+
+			break;
+			
+
+		// testbed for multistep animations
+		case L2RInteractionStateAnimatingRightSplit:
+			
+			progress = ( secondsSinceAnimationStart / kAnimationDurationSplit );
+			[self animationSubStepWithTimeFactor:progress];
+			
+			animationHasEnded =  (progress > 1.0);
+			if (animationHasEnded)
+			{
+				self.currentState = L2RInteractionStateAnimatingRightRotate;
+				[self prepareForAnimationStart];
+				
+				switch (self.currentFace)
+				{
+					case L2RBoxFaceFront:
+						self.currentFace = L2RBoxFaceRight;
+						break;
+					case L2RBoxFaceRight:
+						self.currentFace = L2RBoxFaceBack;
+						break;
+					case L2RBoxFaceBack:
+						self.currentFace = L2RBoxFaceLeft;
+						break;
+					case L2RBoxFaceLeft:
+						self.currentFace = L2RBoxFaceFront;
+						break;
+					case L2RBoxFaceTop:
+						self.currentFace = L2RBoxFaceRight;
+						break;
+					case L2RBoxFaceBottom:
+						self.currentFace = L2RBoxFaceRight;
+						break;
+						
+					default:
+						NSAssert(NO, @"Unexpected switch statement");
+						break;
+				}
+				[self calculateCurrentFacePositions];
+			}
+			
+			break;
+
+		case L2RInteractionStateAnimatingRightRotate:
+			
+			progress = ( secondsSinceAnimationStart / kAnimationDurationRotation );
+			[self animationSubStepWithTimeFactor:progress];
+			
+			animationHasEnded =  (progress > 1.0);
+			if (animationHasEnded)
+			{
+				self.currentState = L2RInteractionStateAnimatingMerge;
+				[self prepareForAnimationStart];
+				[self calculateCurrentFacePositions];
+			}
+			break;
+			
+		case L2RInteractionStateAnimatingMerge:
+			
+			progress = ( secondsSinceAnimationStart / kAnimationDurationMerge );
+			[self animationSubStepWithTimeFactor:progress];
+			
+			animationHasEnded =  (progress > 1.0);
+			if (animationHasEnded)
+			{
+				self.currentState = L2RInteractionStateNormal;
+				[self setupBoxes];
+			}
+			break;
+			
+		default:
+			NSAssert(NO, @"Unexpected switch statement");
+			break;
+	}
+}
+
+
+- (void) animationSubStepWithTimeFactor:(float)time
+{	
+	for (int i = 0; i < self.diceNumber; i++)
+	{
+		GLKMatrix4 startTransform;
+		GLKMatrix4 endTransform;
+		NSValue *transformAsValue = self.animationStartPositions[i];
+		[transformAsValue getValue:&startTransform];
+		transformAsValue = self.currentFacePositions[i];
+		[transformAsValue getValue:&endTransform];
+		
+		// extract target from our data storage
+		GLKMatrix4 middleOfAnimationTransform = [self interpolateTransformBetweenStartTransform:startTransform
+																				   endTransform:endTransform
+																					   progress:time];
+		
+		// feed into bullet
+		btTransform objectTransform;
+		objectTransform.setFromOpenGLMatrix(middleOfAnimationTransform.m);
+		
+		btDefaultMotionState* myMotionState = new btDefaultMotionState(objectTransform);
+		pBoxBodies->at(i)->setMotionState(myMotionState);
 	}
 }
 
@@ -671,7 +784,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 	
 	else if (self.currentState == L2RInteractionStateGravity)
 	{
-		self.currentState = L2RInteractionStateAnimatingToNormal;
+		self.currentState = L2RInteractionStateAnimatingCompression;
 		self.currentFace = L2RBoxFaceFront;
 		[self prepareForAnimationStart];
 	}
@@ -684,33 +797,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 	if (self.currentState == L2RInteractionStateNormal)
 	{
-		self.currentState = L2RInteractionStateRotatingRight;
+		self.currentState = L2RInteractionStateAnimatingRightSplit;
 		[self prepareForAnimationStart];
-		switch (self.currentFace)
-		{
-			case L2RBoxFaceFront:
-				self.currentFace = L2RBoxFaceRight;
-				break;
-			case L2RBoxFaceRight:
-				self.currentFace = L2RBoxFaceBack;
-				break;
-			case L2RBoxFaceBack:
-				self.currentFace = L2RBoxFaceLeft;
-				break;
-			case L2RBoxFaceLeft:
-				self.currentFace = L2RBoxFaceFront;
-				break;
-			case L2RBoxFaceTop:
-				self.currentFace = L2RBoxFaceRight;
-				break;
-			case L2RBoxFaceBottom:
-				self.currentFace = L2RBoxFaceRight;
-				break;
-				
-			default:
-				NSAssert(NO, @"Unexpected switch statement");
-				break;
-		}
 		[self calculateCurrentFacePositions];
 	}
 }
@@ -722,7 +810,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 	if (self.currentState == L2RInteractionStateNormal)
 	{
-		self.currentState = L2RInteractionStateRotatingLeft;
+		self.currentState = L2RInteractionStateAnimatingLeft;
 		[self prepareForAnimationStart];
 		switch (self.currentFace)
 		{
@@ -760,7 +848,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 	if (self.currentState == L2RInteractionStateNormal)
 	{
-		self.currentState = L2RInteractionStateRotatingUp;
+		self.currentState = L2RInteractionStateAnimatingUp;
 		[self prepareForAnimationStart];
 		switch (self.currentFace)
 		{
@@ -798,7 +886,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 	if (self.currentState == L2RInteractionStateNormal)
 	{
-		self.currentState = L2RInteractionStateRotatingDown;
+		self.currentState = L2RInteractionStateAnimatingDown;
 		[self prepareForAnimationStart];
 		switch (self.currentFace)
 		{
@@ -943,7 +1031,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 // -----------------------------------------------------------------------------------------------------------------
 #pragma mark -
-#pragma mark emailing
+#pragma mark Emailing
 // -----------------------------------------------------------------------------------------------------------------
 
 // Displays an email composition interface inside the application. Populates all the Mail fields.
@@ -999,6 +1087,19 @@ const NSTimeInterval kDiceMass			= 0.2;
 	btVector3 rotationAxis = btVector3(0.0, 1.0, 0.0);
 	btQuaternion rotationAsQuarterion;
 
+	// for the multistep animations the animations will have three endPositions:
+	// split, that is just a translated cube
+	// rotate, that is a translation plus rotation
+	// merge, that is only the applied rotation and no translation
+	BOOL shouldAmplifyXStride		= (   self.currentState == L2RInteractionStateAnimatingRightSplit
+									   || self.currentState == L2RInteractionStateAnimatingRightRotate
+//									   || self.currentState == L2RInteractionStateAnimatingLeftSplit
+//									   || self.currentState == L2RInteractionStateAnimatingLeftRotate
+									   );
+	BOOL shouldAmplifyYStride		= NO; //(   self.currentState == L2RInteractionStateAnimatingRightSplit
+									   //|| self.currentState == L2RInteractionStateAnimatingRightRotate);
+
+	
 	// rotation in dependant on target face
 	// the directions of rotations is dependant on the wayt he textures are layed out, and one should be able to
 	// insert an image here
@@ -1029,17 +1130,19 @@ const NSTimeInterval kDiceMass			= 0.2;
 			NSAssert(NO, @"Unexpected Switch statement");
 			break;
 	}
-	
+		
+	float strideX = shouldAmplifyXStride ? 3.0f : 2.0f;
+	float strideY = shouldAmplifyYStride ? 3.0f : 2.0f;
+
 	// transform is dependant on dice id
 	for (int i = 0; i < self.diceNumber; i++)
 	{
 		btTransform objectTransform;
 		objectTransform.setIdentity();
-		float stride = 2.0;
 		div_t division = div(i, 4);
 		objectTransform.setRotation(rotationAsQuarterion);
-		objectTransform.setOrigin( btVector3(division.rem  * stride - 1.5*stride,
-											 division.quot * stride - 1.5*stride,
+		objectTransform.setOrigin( btVector3(division.rem  * strideX - 1.5*strideX,
+											 division.quot * strideY - 1.5*strideY,
 											 0) );
 
 		float objectTransformData[16];		// helper data object
@@ -1063,9 +1166,6 @@ const NSTimeInterval kDiceMass			= 0.2;
 	// split into position and rotational aspects
 	GLKVector4 startTranslation = GLKMatrix4GetColumn(startTransform, 3);
 	GLKVector4 endTranslation	= GLKMatrix4GetColumn(endTransform, 3);
-
-//	GLKMatrix4 startRotation	= GLKMatrix4GetRotation(startTransform);
-//	GLKMatrix4 endRotation		= GLKMatrix4GetRotation(endTransform);
 	
 	// interpolate between the translative part linearly
 	// that is middle = start + (end-start) * progress
@@ -1079,30 +1179,12 @@ const NSTimeInterval kDiceMass			= 0.2;
 	GLKQuaternion middleQuart	= GLKQuaternionSlerp( startQuart, endQuart, progress );
 	
 	// combine and return
-//	GLKMatrix4 middleTransform	= startTransform;
-//	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, middleTranslation);
-
-//	GLKMatrix4SetColumn(middleTransform, 3, middleTranslation);
-
-	
-//	GLKMatrix4 middleTransform	=
-//	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, GLKVector4Negate(startTranslation));
-//	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, middleTranslation);
-	
 	GLKMatrix4 middleTransform	= GLKMatrix4Identity;
 	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, middleTranslation);
 	middleTransform	= GLKMatrix4Multiply(middleTransform, GLKMatrix4MakeWithQuaternion(middleQuart));
-//	middleTransform	= GLKMatrix4TranslateWithVector4(middleTransform, GLKVector4Negate(startTranslation));
 
 	return middleTransform;
 }
-
-//
-//GLKMatrix4 GLKMatrix4GetTranslation(GLKMatrix4 matrix)
-//{
-//	GLKVector4 translationVector = GLKMatrix4GetColumn(matrix, 3);
-//	return GLKMatrix4MakeTranslation(translationVector.x, translationVector.y, translationVector.z);
-//}
 
 
 GLKMatrix4 GLKMatrix4GetRotation(GLKMatrix4 matrix)
