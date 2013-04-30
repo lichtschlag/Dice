@@ -67,11 +67,14 @@ typedef NS_ENUM(NSInteger, L2RInteractionState)
     L2RInteractionStateNormal,
 	L2RInteractionStateGravity,
 	L2RInteractionStateAnimatingCompression,	// I could just use one animation state for arbitrary start and ends
-    L2RInteractionStateAnimatingLeft,			// but this allows for different animation styles
+    L2RInteractionStateAnimatingLeftSplit,		// but this allows for different animation styles
+	L2RInteractionStateAnimatingLeftRotate,
     L2RInteractionStateAnimatingRightSplit,
     L2RInteractionStateAnimatingRightRotate,
-    L2RInteractionStateAnimatingUp,
-    L2RInteractionStateAnimatingDown,
+    L2RInteractionStateAnimatingUpSplit,
+    L2RInteractionStateAnimatingUpRotate,
+    L2RInteractionStateAnimatingDownSplit,
+    L2RInteractionStateAnimatingDownRotate,
     L2RInteractionStateAnimatingMerge,
 };
 
@@ -89,7 +92,7 @@ typedef NS_ENUM(NSInteger, L2RBoxFace)
 const NSTimeInterval kAnimationDurationSplit		= 0.20;
 const NSTimeInterval kAnimationDurationRotation		= 0.60;
 const NSTimeInterval kAnimationDurationMerge		= 0.20;
-const NSTimeInterval kAnimationDurationCompression	= 2.00;
+const NSTimeInterval kAnimationDurationCompression	= 0.65;
 const NSTimeInterval kDiceMass			= 0.2;
 
 
@@ -512,30 +515,156 @@ const NSTimeInterval kDiceMass			= 0.2;
 			animationHasEnded =  (progress > 1.0);
 			if (animationHasEnded)
 			{
-				[self setupBoxes];
-				self.currentState = L2RInteractionStateNormal;
+				self.currentState = L2RInteractionStateAnimatingMerge;
+				[self prepareForAnimationStart];
+				[self calculateCurrentFacePositions];
 			}
 			
 			break;
 			
-		case L2RInteractionStateAnimatingDown:
-		case L2RInteractionStateAnimatingLeft:
-		case L2RInteractionStateAnimatingUp:
+//		case L2RInteractionStateAnimatingDown:
+//		case L2RInteractionStateAnimatingLeft:
+//		case L2RInteractionStateAnimatingUp:
+//			
+//			progress = ( secondsSinceAnimationStart / (kAnimationDurationMerge+kAnimationDurationRotation+kAnimationDurationSplit) );
+//			[self animationSubStepWithTimeFactor:progress];
+//			
+//			animationHasEnded =  (progress > 1.0);
+//			if (animationHasEnded)
+//			{
+//				self.currentState = L2RInteractionStateNormal;
+//				[self setupBoxes];
+//				[self calculateCurrentFacePositions];
+//			}
+//
+//			break;
 			
-			progress = ( secondsSinceAnimationStart / (kAnimationDurationMerge+kAnimationDurationRotation+kAnimationDurationSplit) );
+
+		// testbed for multistep animations
+		// -----------------------------------------------------------------------------------------------------
+		case L2RInteractionStateAnimatingUpSplit:
+			
+			progress = ( secondsSinceAnimationStart / kAnimationDurationSplit );
 			[self animationSubStepWithTimeFactor:progress];
 			
 			animationHasEnded =  (progress > 1.0);
 			if (animationHasEnded)
 			{
-				self.currentState = L2RInteractionStateNormal;
-				[self setupBoxes];
+				self.currentState = L2RInteractionStateAnimatingUpRotate;
+				[self prepareForAnimationStart];
+				
+				switch (self.currentFace)
+				{
+					case L2RBoxFaceFront:
+						self.currentFace = L2RBoxFaceTop;
+						break;
+					case L2RBoxFaceRight:
+						self.currentFace = L2RBoxFaceTop;
+						break;
+					case L2RBoxFaceBack:
+						self.currentFace = L2RBoxFaceTop;
+						break;
+					case L2RBoxFaceLeft:
+						self.currentFace = L2RBoxFaceTop;
+						break;
+					case L2RBoxFaceTop:
+						self.currentFace = L2RBoxFaceBack;
+						break;
+					case L2RBoxFaceBottom:
+						self.currentFace = L2RBoxFaceFront;
+						break;
+						
+					default:
+						NSAssert(NO, @"Unexpected switch statement");
+						break;
+				}
+				[self calculateCurrentFacePositions];
 			}
-
-			break;
 			
+			break;
 
-		// testbed for multistep animations
+		case L2RInteractionStateAnimatingDownSplit:
+			
+			progress = ( secondsSinceAnimationStart / kAnimationDurationSplit );
+			[self animationSubStepWithTimeFactor:progress];
+			
+			animationHasEnded =  (progress > 1.0);
+			if (animationHasEnded)
+			{
+				self.currentState = L2RInteractionStateAnimatingDownRotate;
+				[self prepareForAnimationStart];
+				
+				switch (self.currentFace)
+				{
+					case L2RBoxFaceFront:
+						self.currentFace = L2RBoxFaceBottom;
+						break;
+					case L2RBoxFaceRight:
+						self.currentFace = L2RBoxFaceBottom;
+						break;
+					case L2RBoxFaceBack:
+						self.currentFace = L2RBoxFaceBottom;
+						break;
+					case L2RBoxFaceLeft:
+						self.currentFace = L2RBoxFaceBottom;
+						break;
+					case L2RBoxFaceTop:
+						self.currentFace = L2RBoxFaceFront;
+						break;
+					case L2RBoxFaceBottom:
+						self.currentFace = L2RBoxFaceBack;
+						break;
+						
+					default:
+						NSAssert(NO, @"Unexpected switch statement");
+						break;
+				}
+				[self calculateCurrentFacePositions];
+			}
+			
+			break;
+
+		case L2RInteractionStateAnimatingLeftSplit:
+			
+			progress = ( secondsSinceAnimationStart / kAnimationDurationSplit );
+			[self animationSubStepWithTimeFactor:progress];
+			
+			animationHasEnded =  (progress > 1.0);
+			if (animationHasEnded)
+			{
+				self.currentState = L2RInteractionStateAnimatingLeftRotate;
+				[self prepareForAnimationStart];
+				
+				switch (self.currentFace)
+				{
+					case L2RBoxFaceFront:
+						self.currentFace = L2RBoxFaceLeft;
+						break;
+					case L2RBoxFaceRight:
+						self.currentFace = L2RBoxFaceFront;
+						break;
+					case L2RBoxFaceBack:
+						self.currentFace = L2RBoxFaceRight;
+						break;
+					case L2RBoxFaceLeft:
+						self.currentFace = L2RBoxFaceBack;
+						break;
+					case L2RBoxFaceTop:
+						self.currentFace = L2RBoxFaceLeft;
+						break;
+					case L2RBoxFaceBottom:
+						self.currentFace = L2RBoxFaceLeft;
+						break;
+
+					default:
+						NSAssert(NO, @"Unexpected switch statement");
+						break;
+				}
+				[self calculateCurrentFacePositions];
+			}
+			
+			break;
+		
 		case L2RInteractionStateAnimatingRightSplit:
 			
 			progress = ( secondsSinceAnimationStart / kAnimationDurationSplit );
@@ -576,7 +705,11 @@ const NSTimeInterval kDiceMass			= 0.2;
 			}
 			
 			break;
-
+			
+		// ----------------------------------------------------------------------------------------------------------
+		case L2RInteractionStateAnimatingUpRotate:
+		case L2RInteractionStateAnimatingDownRotate:
+		case L2RInteractionStateAnimatingLeftRotate:
 		case L2RInteractionStateAnimatingRightRotate:
 			
 			progress = ( secondsSinceAnimationStart / kAnimationDurationRotation );
@@ -777,8 +910,6 @@ const NSTimeInterval kDiceMass			= 0.2;
 // State machine will transition from animating states to normal state in update function after animation is done
 - (IBAction) userDidTap:(UIGestureRecognizer *)sender;
 {
-	NSLog(@"%s", __PRETTY_FUNCTION__);
-
 	if (self.currentState == L2RInteractionStateNormal)
 		self.currentState = L2RInteractionStateGravity;
 	
@@ -787,14 +918,13 @@ const NSTimeInterval kDiceMass			= 0.2;
 		self.currentState = L2RInteractionStateAnimatingCompression;
 		self.currentFace = L2RBoxFaceFront;
 		[self prepareForAnimationStart];
+		[self calculateCurrentFacePositions];
 	}
 }
 
 
 - (IBAction) userDidSwipeLeft:(UIGestureRecognizer *)sender;
 {
-	NSLog(@"%s", __PRETTY_FUNCTION__);
-
 	if (self.currentState == L2RInteractionStateNormal)
 	{
 		self.currentState = L2RInteractionStateAnimatingRightSplit;
@@ -806,37 +936,10 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 - (IBAction) userDidSwipeRight:(UIGestureRecognizer *)sender;
 {
-	NSLog(@"%s", __PRETTY_FUNCTION__);
-
 	if (self.currentState == L2RInteractionStateNormal)
 	{
-		self.currentState = L2RInteractionStateAnimatingLeft;
+		self.currentState = L2RInteractionStateAnimatingLeftSplit;
 		[self prepareForAnimationStart];
-		switch (self.currentFace)
-		{
-			case L2RBoxFaceFront:
-				self.currentFace = L2RBoxFaceLeft;
-				break;
-			case L2RBoxFaceRight:
-				self.currentFace = L2RBoxFaceFront;
-				break;
-			case L2RBoxFaceBack:
-				self.currentFace = L2RBoxFaceRight;
-				break;
-			case L2RBoxFaceLeft:
-				self.currentFace = L2RBoxFaceBack;
-				break;
-			case L2RBoxFaceTop:
-				self.currentFace = L2RBoxFaceLeft;
-				break;
-			case L2RBoxFaceBottom:
-				self.currentFace = L2RBoxFaceLeft;
-				break;
-				
-			default:
-				NSAssert(NO, @"Unexpected switch statement");
-				break;
-		}
 		[self calculateCurrentFacePositions];
 	}
 }
@@ -844,37 +947,10 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 - (IBAction) userDidSwipeDown:(UIGestureRecognizer *)sender;
 {
-	NSLog(@"%s", __PRETTY_FUNCTION__);
-
 	if (self.currentState == L2RInteractionStateNormal)
 	{
-		self.currentState = L2RInteractionStateAnimatingUp;
+		self.currentState = L2RInteractionStateAnimatingUpSplit;
 		[self prepareForAnimationStart];
-		switch (self.currentFace)
-		{
-			case L2RBoxFaceFront:
-				self.currentFace = L2RBoxFaceTop;
-				break;
-			case L2RBoxFaceRight:
-				self.currentFace = L2RBoxFaceTop;
-				break;
-			case L2RBoxFaceBack:
-				self.currentFace = L2RBoxFaceTop;
-				break;
-			case L2RBoxFaceLeft:
-				self.currentFace = L2RBoxFaceTop;
-				break;
-			case L2RBoxFaceTop:
-				self.currentFace = L2RBoxFaceBack;
-				break;
-			case L2RBoxFaceBottom:
-				self.currentFace = L2RBoxFaceFront;
-				break;
-				
-			default:
-				NSAssert(NO, @"Unexpected switch statement");
-				break;
-		}
 		[self calculateCurrentFacePositions];
 	}
 }
@@ -882,37 +958,10 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 - (IBAction) userDidSwipeUp:(UIGestureRecognizer *)sender;
 {
-	NSLog(@"%s", __PRETTY_FUNCTION__);
-
 	if (self.currentState == L2RInteractionStateNormal)
 	{
-		self.currentState = L2RInteractionStateAnimatingDown;
+		self.currentState = L2RInteractionStateAnimatingDownSplit;
 		[self prepareForAnimationStart];
-		switch (self.currentFace)
-		{
-			case L2RBoxFaceFront:
-				self.currentFace = L2RBoxFaceBottom;
-				break;
-			case L2RBoxFaceRight:
-				self.currentFace = L2RBoxFaceBottom;
-				break;
-			case L2RBoxFaceBack:
-				self.currentFace = L2RBoxFaceBottom;
-				break;
-			case L2RBoxFaceLeft:
-				self.currentFace = L2RBoxFaceBottom;
-				break;
-			case L2RBoxFaceTop:
-				self.currentFace = L2RBoxFaceFront;
-				break;
-			case L2RBoxFaceBottom:
-				self.currentFace = L2RBoxFaceBack;
-				break;
-				
-			default:
-				NSAssert(NO, @"Unexpected switch statement");
-				break;
-		}
 		[self calculateCurrentFacePositions];
 	}
 }
@@ -1093,12 +1142,20 @@ const NSTimeInterval kDiceMass			= 0.2;
 	// merge, that is only the applied rotation and no translation
 	BOOL shouldAmplifyXStride		= (   self.currentState == L2RInteractionStateAnimatingRightSplit
 									   || self.currentState == L2RInteractionStateAnimatingRightRotate
-//									   || self.currentState == L2RInteractionStateAnimatingLeftSplit
-//									   || self.currentState == L2RInteractionStateAnimatingLeftRotate
+									   || self.currentState == L2RInteractionStateAnimatingLeftSplit
+									   || self.currentState == L2RInteractionStateAnimatingLeftRotate
+									   || self.currentState == L2RInteractionStateAnimatingCompression
 									   );
-	BOOL shouldAmplifyYStride		= NO; //(   self.currentState == L2RInteractionStateAnimatingRightSplit
-									   //|| self.currentState == L2RInteractionStateAnimatingRightRotate);
+	
+	BOOL shouldAmplifyYStride		= (   self.currentState == L2RInteractionStateAnimatingUpSplit
+									   || self.currentState == L2RInteractionStateAnimatingUpRotate
+									   || self.currentState == L2RInteractionStateAnimatingDownSplit
+									   || self.currentState == L2RInteractionStateAnimatingDownRotate
+									   || self.currentState == L2RInteractionStateAnimatingCompression
+									   );
 
+	// shouldAmplifyXStride = shouldAmplifyXStride && (target and current face do not have the same y vector)
+	// shouldAmplifyYStride = shouldAmplifyYStride && (target and current face do not have the same x vector)
 	
 	// rotation in dependant on target face
 	// the directions of rotations is dependant on the wayt he textures are layed out, and one should be able to
