@@ -1,0 +1,311 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3FCBE6451732458C004EA158 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FCBE6441732458C004EA158 /* Cocoa.framework */; };
+		3FCBE64F1732458C004EA158 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FCBE64D1732458C004EA158 /* InfoPlist.strings */; };
+		3FCBE6511732458C004EA158 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBE6501732458C004EA158 /* main.m */; };
+		3FCBE6551732458C004EA158 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3FCBE6531732458C004EA158 /* Credits.rtf */; };
+		3FCBE6581732458C004EA158 /* L2RAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBE6571732458C004EA158 /* L2RAppDelegate.m */; };
+		3FCBE65B1732458C004EA158 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FCBE6591732458C004EA158 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3FCBE6411732458C004EA158 /* DiceTextureGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceTextureGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FCBE6441732458C004EA158 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3FCBE6471732458C004EA158 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3FCBE6481732458C004EA158 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3FCBE6491732458C004EA158 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3FCBE64C1732458C004EA158 /* DiceTextureGenerator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DiceTextureGenerator-Info.plist"; sourceTree = "<group>"; };
+		3FCBE64E1732458C004EA158 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3FCBE6501732458C004EA158 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3FCBE6521732458C004EA158 /* DiceTextureGenerator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiceTextureGenerator-Prefix.pch"; sourceTree = "<group>"; };
+		3FCBE6541732458C004EA158 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		3FCBE6561732458C004EA158 /* L2RAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = L2RAppDelegate.h; sourceTree = "<group>"; };
+		3FCBE6571732458C004EA158 /* L2RAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = L2RAppDelegate.m; sourceTree = "<group>"; };
+		3FCBE65A1732458C004EA158 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3FCBE63E1732458C004EA158 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FCBE6451732458C004EA158 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3FCBE6381732458C004EA158 = {
+			isa = PBXGroup;
+			children = (
+				3FCBE64A1732458C004EA158 /* DiceTextureGenerator */,
+				3FCBE6431732458C004EA158 /* Frameworks */,
+				3FCBE6421732458C004EA158 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3FCBE6421732458C004EA158 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3FCBE6411732458C004EA158 /* DiceTextureGenerator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3FCBE6431732458C004EA158 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FCBE6441732458C004EA158 /* Cocoa.framework */,
+				3FCBE6461732458C004EA158 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3FCBE6461732458C004EA158 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FCBE6471732458C004EA158 /* AppKit.framework */,
+				3FCBE6481732458C004EA158 /* CoreData.framework */,
+				3FCBE6491732458C004EA158 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		3FCBE64A1732458C004EA158 /* DiceTextureGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				3FCBE6561732458C004EA158 /* L2RAppDelegate.h */,
+				3FCBE6571732458C004EA158 /* L2RAppDelegate.m */,
+				3FCBE6591732458C004EA158 /* MainMenu.xib */,
+				3FCBE64B1732458C004EA158 /* Supporting Files */,
+			);
+			path = DiceTextureGenerator;
+			sourceTree = "<group>";
+		};
+		3FCBE64B1732458C004EA158 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3FCBE64C1732458C004EA158 /* DiceTextureGenerator-Info.plist */,
+				3FCBE64D1732458C004EA158 /* InfoPlist.strings */,
+				3FCBE6501732458C004EA158 /* main.m */,
+				3FCBE6521732458C004EA158 /* DiceTextureGenerator-Prefix.pch */,
+				3FCBE6531732458C004EA158 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3FCBE6401732458C004EA158 /* DiceTextureGenerator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FCBE65E1732458C004EA158 /* Build configuration list for PBXNativeTarget "DiceTextureGenerator" */;
+			buildPhases = (
+				3FCBE63D1732458C004EA158 /* Sources */,
+				3FCBE63E1732458C004EA158 /* Frameworks */,
+				3FCBE63F1732458C004EA158 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DiceTextureGenerator;
+			productName = DiceTextureGenerator;
+			productReference = 3FCBE6411732458C004EA158 /* DiceTextureGenerator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3FCBE6391732458C004EA158 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = L2R;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Leonhard Lichtschlag";
+			};
+			buildConfigurationList = 3FCBE63C1732458C004EA158 /* Build configuration list for PBXProject "DiceTextureGenerator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3FCBE6381732458C004EA158;
+			productRefGroup = 3FCBE6421732458C004EA158 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3FCBE6401732458C004EA158 /* DiceTextureGenerator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3FCBE63F1732458C004EA158 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FCBE64F1732458C004EA158 /* InfoPlist.strings in Resources */,
+				3FCBE6551732458C004EA158 /* Credits.rtf in Resources */,
+				3FCBE65B1732458C004EA158 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3FCBE63D1732458C004EA158 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FCBE6511732458C004EA158 /* main.m in Sources */,
+				3FCBE6581732458C004EA158 /* L2RAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3FCBE64D1732458C004EA158 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FCBE64E1732458C004EA158 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3FCBE6531732458C004EA158 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FCBE6541732458C004EA158 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		3FCBE6591732458C004EA158 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FCBE65A1732458C004EA158 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3FCBE65C1732458C004EA158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3FCBE65D1732458C004EA158 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3FCBE65F1732458C004EA158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiceTextureGenerator/DiceTextureGenerator-Prefix.pch";
+				INFOPLIST_FILE = "DiceTextureGenerator/DiceTextureGenerator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3FCBE6601732458C004EA158 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiceTextureGenerator/DiceTextureGenerator-Prefix.pch";
+				INFOPLIST_FILE = "DiceTextureGenerator/DiceTextureGenerator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3FCBE63C1732458C004EA158 /* Build configuration list for PBXProject "DiceTextureGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FCBE65C1732458C004EA158 /* Debug */,
+				3FCBE65D1732458C004EA158 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3FCBE65E1732458C004EA158 /* Build configuration list for PBXNativeTarget "DiceTextureGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FCBE65F1732458C004EA158 /* Debug */,
+				3FCBE6601732458C004EA158 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3FCBE6391732458C004EA158 /* Project object */;
+}

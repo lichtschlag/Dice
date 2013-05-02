@@ -7,4 +7,7 @@
    <FileRef
       location = "group:DiceMobile/DiceMobile.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:DiceTextureGenerator/DiceTextureGenerator.xcodeproj">
+   </FileRef>
 </Workspace>

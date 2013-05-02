@@ -21,6 +21,7 @@
 		3F9BDC0814FC69790076116C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9BDC0114FC69790076116C /* Icon@2x.png */; };
 		3F9BDC0914FC69790076116C /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9BDC0214FC69790076116C /* iTunesArtwork.png */; };
 		3FB3A7FD14FEC74A0007CA0C /* DiceSides.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */; };
+		3FCBE66217324EF6004EA158 /* Textures in Resources */ = {isa = PBXBuildFile; fileRef = 3FCBE66117324EF6004EA158 /* Textures */; };
 		3FDCF56214F7F74800FB639B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56114F7F74800FB639B /* UIKit.framework */; };
 		3FDCF56414F7F74800FB639B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56314F7F74800FB639B /* Foundation.framework */; };
 		3FDCF56614F7F74800FB639B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56514F7F74800FB639B /* CoreGraphics.framework */; };
@@ -174,6 +175,7 @@
 		3F9BDC0114FC69790076116C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3F9BDC0214FC69790076116C /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DiceSides.jpg; sourceTree = "<group>"; };
+		3FCBE66117324EF6004EA158 /* Textures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Textures; path = ../../Textures; sourceTree = "<group>"; };
 		3FDCF55D14F7F74800FB639B /* DiceMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FDCF56114F7F74800FB639B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3FDCF56314F7F74800FB639B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -597,6 +599,7 @@
 		3FDCF58A14F7F82700FB639B /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				3FCBE66117324EF6004EA158 /* Textures */,
 				3F62897B173088D500EF7FC2 /* klack.m4a */,
 				3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */,
 				3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */,
@@ -1113,6 +1116,7 @@
 				3FB3A7FD14FEC74A0007CA0C /* DiceSides.jpg in Resources */,
 				3F2135DF150104DE007048C4 /* EnvironmentCubeMap.jpg in Resources */,
 				3F62897C173088D500EF7FC2 /* klack.m4a in Resources */,
+				3FCBE66217324EF6004EA158 /* Textures in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
