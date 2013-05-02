@@ -2,7 +2,7 @@
 //  main.m
 //  DiceTextureGenerator
 //
-//  Created by Leonhard Lichtschlag on 2/May/13.
+//  Created by Leonhard Lichtschlag on 01/May/13.
 //  Copyright (c) 2013 Leonhard Lichtschlag. All rights reserved.
 //
 

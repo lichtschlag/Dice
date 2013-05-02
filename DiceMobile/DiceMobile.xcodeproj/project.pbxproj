@@ -176,9 +176,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F2135DE150104DE007048C4 /* EnvironmentCubeMap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = EnvironmentCubeMap.jpg; sourceTree = "<group>"; };
+		3F2135DE150104DE007048C4 /* EnvironmentCubeMap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = EnvironmentCubeMap.jpg; path = ../DiceMobile/DiceMobile/EnvironmentCubeMap.jpg; sourceTree = "<group>"; };
 		3F519F0F15178ECD00278CD0 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
-		3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DiceSidesWoW.jpg; sourceTree = "<group>"; };
+		3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DiceSidesWoW.jpg; path = ../DiceMobile/DiceMobile/DiceSidesWoW.jpg; sourceTree = "<group>"; };
 		3F62897B173088D500EF7FC2 /* klack.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = klack.m4a; sourceTree = "<group>"; };
 		3F62897D1730894300EF7FC2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3F7ACD2914FD11930033A7E7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -189,7 +189,7 @@
 		3F9BDC0014FC69790076116C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3F9BDC0114FC69790076116C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3F9BDC0214FC69790076116C /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
-		3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DiceSides.jpg; sourceTree = "<group>"; };
+		3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DiceSides.jpg; path = ../DiceMobile/DiceMobile/DiceSides.jpg; sourceTree = "<group>"; };
 		3FCBE664173253E4004EA158 /* texture.0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.0.jpg; sourceTree = "<group>"; };
 		3FCBE665173253E4004EA158 /* texture.1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.1.jpg; sourceTree = "<group>"; };
 		3FCBE666173253E4004EA158 /* texture.10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.10.jpg; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 		3FCBE671173253E4004EA158 /* texture.7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.7.jpg; sourceTree = "<group>"; };
 		3FCBE672173253E4004EA158 /* texture.8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.8.jpg; sourceTree = "<group>"; };
 		3FCBE673173253E4004EA158 /* texture.9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.9.jpg; sourceTree = "<group>"; };
-		3FDCF55D14F7F74800FB639B /* DiceMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FDCF55D14F7F74800FB639B /* Diced Resume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diced Resume.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FDCF56114F7F74800FB639B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3FDCF56314F7F74800FB639B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3FDCF56514F7F74800FB639B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -551,7 +551,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F9BDC0B14FC69830076116C /* Icon */ = {
+		3F9BDC0B14FC69830076116C /* Application Icon */ = {
 			isa = PBXGroup;
 			children = (
 				3F9BDBFC14FC69790076116C /* Icon-72.png */,
@@ -563,12 +563,15 @@
 				3F9BDC0114FC69790076116C /* Icon@2x.png */,
 				3F9BDC0214FC69790076116C /* iTunesArtwork.png */,
 			);
-			name = Icon;
+			name = "Application Icon";
 			sourceTree = "<group>";
 		};
 		3FCBE663173253E4004EA158 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */,
+				3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */,
+				3F2135DE150104DE007048C4 /* EnvironmentCubeMap.jpg */,
 				3FCBE664173253E4004EA158 /* texture.0.jpg */,
 				3FCBE665173253E4004EA158 /* texture.1.jpg */,
 				3FCBE666173253E4004EA158 /* texture.10.jpg */,
@@ -590,10 +593,17 @@
 			path = ../../Textures;
 			sourceTree = "<group>";
 		};
+		3FCBE684173265B8004EA158 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				3F62897B173088D500EF7FC2 /* klack.m4a */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
 		3FDCF55214F7F74700FB639B = {
 			isa = PBXGroup;
 			children = (
-				3F62897D1730894300EF7FC2 /* AudioToolbox.framework */,
 				3FDCF58914F7F7F100FB639B /* App Core */,
 				3FDCF58B14F7F83C00FB639B /* GL View */,
 				3FDCF58A14F7F82700FB639B /* Ressources */,
@@ -606,7 +616,7 @@
 		3FDCF55E14F7F74800FB639B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3FDCF55D14F7F74800FB639B /* DiceMobile.app */,
+				3FDCF55D14F7F74800FB639B /* Diced Resume.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -615,6 +625,7 @@
 			isa = PBXGroup;
 			children = (
 				3FDCF58C14F820C100FB639B /* Bullet */,
+				3F62897D1730894300EF7FC2 /* AudioToolbox.framework */,
 				3FE19CE8172C8AE40055DEDD /* MessageUI.framework */,
 				3F7ACD2914FD11930033A7E7 /* CoreMotion.framework */,
 				3FDCF56114F7F74800FB639B /* UIKit.framework */,
@@ -654,11 +665,8 @@
 			isa = PBXGroup;
 			children = (
 				3FCBE663173253E4004EA158 /* Textures */,
-				3F62897B173088D500EF7FC2 /* klack.m4a */,
-				3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */,
-				3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */,
-				3F2135DE150104DE007048C4 /* EnvironmentCubeMap.jpg */,
-				3F9BDC0B14FC69830076116C /* Icon */,
+				3FCBE684173265B8004EA158 /* Sound */,
+				3F9BDC0B14FC69830076116C /* Application Icon */,
 			);
 			name = Ressources;
 			path = DiceMobile;
@@ -1118,7 +1126,7 @@
 			);
 			name = DiceMobile;
 			productName = DiceMobile;
-			productReference = 3FDCF55D14F7F74800FB639B /* DiceMobile.app */;
+			productReference = 3FDCF55D14F7F74800FB639B /* Diced Resume.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1409,7 +1417,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "DiceMobile/DiceMobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Diced Resume";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1422,7 +1430,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "DiceMobile/DiceMobile-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Diced Resume";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

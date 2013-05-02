@@ -2,7 +2,7 @@
 //  L2RAppDelegate.m
 //  DiceTextureGenerator
 //
-//  Created by Leonhard Lichtschlag on 2/May/13.
+//  Created by Leonhard Lichtschlag on 01/May/13.
 //  Copyright (c) 2013 Leonhard Lichtschlag. All rights reserved.
 //
 
@@ -78,7 +78,12 @@
 		NSImage *texture = textureArray[i];
 		NSString *fileName = [[NSString  alloc] initWithFormat:@"texture.%d.jpg", i];
 		NSString *filePath = [pathToContainingFolder stringByAppendingPathComponent:fileName];
-		[[texture TIFFRepresentation] writeToFile:filePath atomically:YES];
+
+		// the image is not drawn yet and we need to force a bitmap representation before cocoa can build jpegs
+		NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:[texture TIFFRepresentation]];
+		NSData *bitmapData = [imageRep representationUsingType:NSJPEGFileType properties:@{ NSImageCompressionFactor:@(1.1) }];
+
+		[bitmapData writeToFile:filePath atomically:YES];
 	}
 }
 

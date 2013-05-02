@@ -2,7 +2,7 @@
 //  DMViewController.h
 //  DiceMobile
 //
-//  Created by Leonhard Lichtschlag on 24/Feb/12.
+//  Created by Leonhard Lichtschlag on 01/May/13.
 //  Copyright (c) 2012 Leonhard Lichtschlag. All rights reserved.
 //
 
@@ -27,6 +27,7 @@
 
 - (IBAction) userDidTapShareButton:(id)sender;
 - (IBAction) userDidTapInfoButton:(id)sender;
+
 
 @end
 

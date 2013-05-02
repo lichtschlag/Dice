@@ -24,7 +24,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>de.rwth.hci.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>de.rwth.hci.leonhard.wwdcresume2013.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

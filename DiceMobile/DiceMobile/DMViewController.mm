@@ -2,7 +2,7 @@
 //  DMViewController.m
 //  DiceMobile
 //
-//  Created by Leonhard Lichtschlag on 24/Feb/12.
+//  Created by Leonhard Lichtschlag on 01/May/13.
 //  Copyright (c) 2012 Leonhard Lichtschlag. All rights reserved.
 //
 
@@ -19,47 +19,47 @@ GLfloat gCubeVertexData[6*6*8] =
 {
     // Data layout for each line below is:
     // positionX, positionY, positionZ,     normalX, normalY, normalZ,		tex0.x, tex0.y
-	1.0f,-1.0f,-1.0f,		  1.0f, 0.0f, 0.0f,			0.5f, 0.0f,		// RIGHT FACE
-    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.333f,
-    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.0f,	
-    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.0f,	
-    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.333f,
-    1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.333f,
+	1.0f,-1.0f,-1.0f,		  1.0f, 0.0f, 0.0f,			0.499f, 0.0f,		// RIGHT FACE
+    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.499f, 0.333f,
+    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.000f, 0.0f,
+    1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.000f, 0.0f,
+    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.499f, 0.333f,
+    1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.000f, 0.333f,
 	
-     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.333f,	// TOP FACE
-    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.333f,
-     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,	
-     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,	
-    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.333f,
-    -1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.0f,	
+     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.000f, 0.333f,	// TOP FACE
+    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.501f, 0.333f,
+     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.000f, 0.0f,
+     1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.000f, 0.0f,
+    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.501f, 0.333f,
+    -1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.501f, 0.0f,
     
-    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.666f,	// LEFT FACE
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.334f,
-    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.666f,
-    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.666f,
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.334f,
-    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.334f,
+    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.000f, 0.666f,	// LEFT FACE
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.000f, 0.334f,
+    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.499f, 0.666f,
+    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.499f, 0.666f,
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.000f, 0.334f,
+    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.499f, 0.334f,
     
-    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.334f,	// BOTTOM FACE
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.334f,
-    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.666f,
-    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.666f,
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.334f,
-     1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.666f,
+    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		0.501f, 0.334f,	// BOTTOM FACE
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.000f, 0.334f,
+    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.501f, 0.666f,
+    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.501f, 0.666f,
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.000f, 0.334f,
+     1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		1.000f, 0.666f,
     
-     1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 1.0f,		// FRONT FACE
-    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.667f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.667f,
-    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
-    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 0.667f,
+     1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.499f, 1.0f,		// FRONT FACE
+    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.000f, 1.0f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.499f, 0.667f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.499f, 0.667f,
+    -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.000f, 1.0f,
+    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.000f, 0.667f,
     
-	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 0.667f,	// BACK FACE
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 0.667f,
-	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 1.0f,
-	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 1.0f,
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 0.667f,
-	-1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 1.0f
+	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.501f, 0.667f,	// BACK FACE
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.000f, 0.667f,
+	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.501f, 1.0f,
+	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.501f, 1.0f,
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.000f, 0.667f,
+	-1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.000f, 1.0f
 };
 
 
@@ -154,13 +154,6 @@ const NSTimeInterval kDiceMass			= 0.2;
 // ===============================================================================================================
 @implementation DMViewController
 // ===============================================================================================================
-
-@synthesize context				= mContext;
-@synthesize objectEffect		= mObjectEffect;
-@synthesize environmentEffect	= mEnvironmentEffect;
-@synthesize diceNumber			= mDiceNumber;
-@synthesize motionManager		= mMotionManager;
-
 
 // ---------------------------------------------------------------------------------------------------------------
 #pragma mark -
@@ -391,13 +384,6 @@ const NSTimeInterval kDiceMass			= 0.2;
 		btTransform objectTransform;
 		objectTransform.setFromOpenGLMatrix(objectTransformMatrix.m);
 		
-		
-//		float stride = 2.0;
-//		div_t division = div(i, 4);
-//		objectTransform.setOrigin( btVector3(division.rem  * stride - 1.5*stride,
-//											 division.quot * stride - 1.5*stride,
-//											 0) );
-		
 		btDefaultMotionState* myMotionState = new btDefaultMotionState(objectTransform);
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape, localInertia);
 		rbInfo.m_restitution	= 1.0;
@@ -557,25 +543,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 			
 			break;
 			
-//		case L2RInteractionStateAnimatingDown:
-//		case L2RInteractionStateAnimatingLeft:
-//		case L2RInteractionStateAnimatingUp:
-//			
-//			progress = ( secondsSinceAnimationStart / (kAnimationDurationMerge+kAnimationDurationRotation+kAnimationDurationSplit) );
-//			[self animationSubStepWithTimeFactor:progress];
-//			
-//			animationHasEnded =  (progress > 1.0);
-//			if (animationHasEnded)
-//			{
-//				self.currentState = L2RInteractionStateNormal;
-//				[self setupBoxes];
-//				[self calculateCurrentFacePositions];
-//			}
-//
-//			break;
-			
 
-		// testbed for multistep animations
+		// multistep animations
 		// -----------------------------------------------------------------------------------------------------
 		case L2RInteractionStateAnimatingUpSplit:
 			

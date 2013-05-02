@@ -2,7 +2,7 @@
 //  DMAppDelegate.m
 //  DiceMobile
 //
-//  Created by Leonhard Lichtschlag on 24/Feb/12.
+//  Created by Leonhard Lichtschlag on 01/May/13.
 //  Copyright (c) 2012 Leonhard Lichtschlag. All rights reserved.
 //
 
