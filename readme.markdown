@@ -5,7 +5,11 @@ Copyright (c) 2013 Leonhard Lichtschlag. All rights reserved.
 
 ---
 
-Dice marries the falling cubes project from the Bullet physics library to OpenGL ES 2.
+### What you'll find in this source
+
+DiceMobile marries the falling cubes project from the Bullet physics library to OpenGL ES 2.
+DiceTExtureGenerator is a small helper to convert images into 16 textures for the dice.
+
 
 ---
 

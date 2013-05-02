@@ -225,7 +225,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 {
 	self.textures = [NSMutableArray array];
 	
-	// load texture data
+	// load texture data for the dice
 	for (int i = 0; i < self.diceNumber; i++)
 	{
 		NSError *outError = nil;
@@ -241,7 +241,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 		[self.textures addObject:textureInfo];
 	}
 	
-	
+	// load environment map
 	NSError *outError = nil;
 	NSURL *textureURL					= [[NSBundle mainBundle] URLForResource:@"EnvironmentCubeMap" withExtension:@"jpg"];
 	NSDictionary *options				= [NSDictionary dictionaryWithObjectsAndKeys:
@@ -251,7 +251,6 @@ const NSTimeInterval kDiceMass			= 0.2;
 	
 	if (!self.cubeMapInfo)
 		NSLog(@"%s %@", __PRETTY_FUNCTION__, outError);
-	
 }
 
 
@@ -284,6 +283,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 	self.objectEffect = [[GLKBaseEffect alloc] init];
 	self.objectEffect.light0.enabled			= GL_TRUE;
 	self.objectEffect.light0.diffuseColor		= GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
+	self.objectEffect.light0.position			= GLKVector4Make(0.0f, 1.0f, 1.0f, 0.0f);
+//	self.objectEffect.lightModelAmbientColor	= GLKVector4Make(1.0f, 1.0f, 1.0f, 0.0f);
 	self.objectEffect.texture2d0.enabled		= GL_TRUE;
 	self.objectEffect.texture2d0.name			= aTexture.name;
 	self.objectEffect.useConstantColor			= GL_TRUE;
@@ -294,7 +295,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 
 	// compute projection matix
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f),	// FoV
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(75.0f),	// FoV
 															aspect,									// Sceen aspect
 															0.1f, 100.0f);							// Near/far plane
     self.objectEffect.transform.projectionMatrix = projectionMatrix;
@@ -313,7 +314,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 	// create 6 planes / half spaces (world contraints)
 	pWorldPlanes = new btAlignedObjectArray<btRigidBody*>();
 	pCollisionShapes = new btAlignedObjectArray<btCollisionShape*>();
-	btBoxShape* worldBoxShape = new btBoxShape( btVector3(10, 10, 10) );		// world constraints helper object
+	btBoxShape* worldBoxShape = new btBoxShape( btVector3(5.25, 7, 10) );		// world constraints helper object
 	for (int i = 0; i < 6; i++)
 	{
 		btVector4 planeEq;
@@ -1217,7 +1218,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 		objectTransform.setRotation(rotationAsQuarterion);
 		objectTransform.setOrigin( btVector3(division.rem  * strideX - 1.5*strideX,
 											 division.quot * strideY - 1.5*strideY,
-											 0) );
+											 4.0f) );
 
 		float objectTransformData[16];		// helper data object
 		objectTransform.getOpenGLMatrix(objectTransformData);

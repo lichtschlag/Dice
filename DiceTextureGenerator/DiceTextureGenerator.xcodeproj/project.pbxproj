@@ -47,6 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				3FCBE64A1732458C004EA158 /* DiceTextureGenerator */,
+				3FCBE64B1732458C004EA158 /* Supporting Files */,
 				3FCBE6431732458C004EA158 /* Frameworks */,
 				3FCBE6421732458C004EA158 /* Products */,
 			);
@@ -63,20 +64,12 @@
 		3FCBE6431732458C004EA158 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3FCBE6441732458C004EA158 /* Cocoa.framework */,
-				3FCBE6461732458C004EA158 /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3FCBE6461732458C004EA158 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
 				3FCBE6471732458C004EA158 /* AppKit.framework */,
 				3FCBE6481732458C004EA158 /* CoreData.framework */,
 				3FCBE6491732458C004EA158 /* Foundation.framework */,
+				3FCBE6441732458C004EA158 /* Cocoa.framework */,
 			);
-			name = "Other Frameworks";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3FCBE64A1732458C004EA158 /* DiceTextureGenerator */ = {
@@ -85,7 +78,6 @@
 				3FCBE6561732458C004EA158 /* L2RAppDelegate.h */,
 				3FCBE6571732458C004EA158 /* L2RAppDelegate.m */,
 				3FCBE6591732458C004EA158 /* MainMenu.xib */,
-				3FCBE64B1732458C004EA158 /* Supporting Files */,
 			);
 			path = DiceTextureGenerator;
 			sourceTree = "<group>";
@@ -100,6 +92,7 @@
 				3FCBE6531732458C004EA158 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			path = DiceTextureGenerator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

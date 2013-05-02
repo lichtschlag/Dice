@@ -11,6 +11,7 @@
 @interface L2RAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-- (IBAction)userDidPressStartButton:(id)sender;
+
+- (IBAction) userDidPressStartButton:(id)sender;
 
 @end
