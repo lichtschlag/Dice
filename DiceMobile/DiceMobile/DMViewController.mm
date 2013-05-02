@@ -20,45 +20,45 @@ GLfloat gCubeVertexData[6*6*8] =
     // Data layout for each line below is:
     // positionX, positionY, positionZ,     normalX, normalY, normalZ,		tex0.x, tex0.y
 	1.0f,-1.0f,-1.0f,		  1.0f, 0.0f, 0.0f,			0.5f, 0.0f,		// RIGHT FACE
-    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
+    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.333f,
     1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.0f,	
     1.0f,-1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.0f,	
-    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.33f,
-    1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.33f,
+    1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.5f, 0.333f,
+    1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.0f, 0.333f,
 	
-     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.33f,	// TOP FACE
-    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,
+     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.333f,	// TOP FACE
+    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.333f,
      1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,	
      1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.0f, 0.0f,	
-    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.33f,
+    -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.333f,
     -1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.5f, 0.0f,	
     
-    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.66f,	// LEFT FACE
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.33f,
-    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.66f,
-    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.66f,
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.33f,
-    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.33f,
+    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.666f,	// LEFT FACE
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.334f,
+    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.666f,
+    -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.666f,
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.0f, 0.334f,
+    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.5f, 0.334f,
     
-    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.33f,	// BOTTOM FACE
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.33f,
-    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.66f,
-    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.66f,
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.33f,
-     1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.66f,
+    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.334f,	// BOTTOM FACE
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.334f,
+    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.666f,
+    -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.5f, 0.666f,
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.334f,
+     1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		1.0f, 0.666f,
     
      1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 1.0f,		// FRONT FACE
     -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.66f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.66f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.667f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.5f, 0.667f,
     -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
-    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 0.66f,
+    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.0f, 0.667f,
     
-	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 0.66f,	// BACK FACE
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 0.66f,
+	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 0.667f,	// BACK FACE
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 0.667f,
 	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 1.0f,
 	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.5f, 1.0f,
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 0.66f,
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 0.667f,
 	-1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.0f, 1.0f
 };
 
@@ -133,6 +133,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 @property			NSDate*			animationStartDate;
 @property			NSMutableArray*	animationStartPositions;
 @property			NSMutableArray*	currentFacePositions;
+@property			NSMutableArray*	textures;
+@property			GLKTextureInfo *cubeMapInfo;
 
 @property	SystemSoundID audioEffect;
 
@@ -226,26 +228,45 @@ const NSTimeInterval kDiceMass			= 0.2;
 }
 
 
+- (void) loadTextures
+{
+	self.textures = [NSMutableArray array];
+	
+	// load texture data
+	for (int i = 0; i < self.diceNumber; i++)
+	{
+		NSError *outError = nil;
+		NSString* textureName			= [[NSString  alloc] initWithFormat:@"texture.%d", i];
+		NSURL *textureURL				= [[NSBundle mainBundle] URLForResource:textureName withExtension:@"jpg"];
+		NSDictionary *options			= [NSDictionary dictionaryWithObjectsAndKeys:
+										   [NSNumber numberWithBool:NO],  GLKTextureLoaderGenerateMipmaps,
+										   [NSNumber numberWithBool:YES], GLKTextureLoaderOriginBottomLeft, nil];
+		GLKTextureInfo *textureInfo	= [GLKTextureLoader textureWithContentsOfURL:textureURL options:options error:&outError];
+		if (!textureInfo)
+			NSLog(@"%s %@", __PRETTY_FUNCTION__, outError);
+		
+		[self.textures addObject:textureInfo];
+	}
+	
+	
+	NSError *outError = nil;
+	NSURL *textureURL					= [[NSBundle mainBundle] URLForResource:@"EnvironmentCubeMap" withExtension:@"jpg"];
+	NSDictionary *options				= [NSDictionary dictionaryWithObjectsAndKeys:
+										   [NSNumber numberWithBool:NO],  GLKTextureLoaderGenerateMipmaps,
+										   nil];
+	self.cubeMapInfo	= [GLKTextureLoader cubeMapWithContentsOfURL:textureURL options:options error:&outError];
+	
+	if (!self.cubeMapInfo)
+		NSLog(@"%s %@", __PRETTY_FUNCTION__, outError);
+	
+}
+
+
+
 - (void) setupScene
 {
 	[EAGLContext setCurrentContext:self.context];
-	
-	// load texture data
-	NSError *outError = nil;
-	NSURL *textureURL				= [[NSBundle mainBundle] URLForResource:@"DiceSidesWoW" withExtension:@"jpg"];
-	NSDictionary *options			= [NSDictionary dictionaryWithObjectsAndKeys:
-									   [NSNumber numberWithBool:NO],  GLKTextureLoaderGenerateMipmaps,
-									   [NSNumber numberWithBool:YES], GLKTextureLoaderOriginBottomLeft, nil];
-	GLKTextureInfo *textureInfo	= [GLKTextureLoader textureWithContentsOfURL:textureURL options:options error:&outError];
-	
-	textureURL						= [[NSBundle mainBundle] URLForResource:@"EnvironmentCubeMap" withExtension:@"jpg"];
-	options							= [NSDictionary dictionaryWithObjectsAndKeys:
-									   [NSNumber numberWithBool:NO],  GLKTextureLoaderGenerateMipmaps,
-									   nil];
-	GLKTextureInfo *cubeMapInfo	= [GLKTextureLoader cubeMapWithContentsOfURL:textureURL options:options error:&outError];
-	
-	if (!textureInfo)
-		NSLog(@"%s %@", __PRETTY_FUNCTION__, outError);
+	[self loadTextures];
 	
 	// load mesh for one dice to graphics card
 	glGenVertexArraysOES(1, &mDiceVertexArray);
@@ -265,12 +286,13 @@ const NSTimeInterval kDiceMass			= 0.2;
 	glBindVertexArrayOES(0);
 
 	// create a simple effect for the dice
+	GLKTextureInfo *aTexture =  (GLKTextureInfo *)self.textures[0];
 //	self.objectEffect = [[GLKReflectionMapEffect alloc] init];
 	self.objectEffect = [[GLKBaseEffect alloc] init];
 	self.objectEffect.light0.enabled			= GL_TRUE;
 	self.objectEffect.light0.diffuseColor		= GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
 	self.objectEffect.texture2d0.enabled		= GL_TRUE;
-	self.objectEffect.texture2d0.name			= textureInfo.name;
+	self.objectEffect.texture2d0.name			= aTexture.name;
 	self.objectEffect.useConstantColor			= GL_TRUE;
 	self.objectEffect.constantColor				= GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
 	self.objectEffect.lightingType				= GLKLightingTypePerPixel;
@@ -287,7 +309,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 	// create skybox effect
 	self.environmentEffect = [[GLKSkyboxEffect alloc] init]; 
 	self.environmentEffect.transform.projectionMatrix = projectionMatrix;
-	self.environmentEffect.textureCubeMap.name = cubeMapInfo.name;
+	self.environmentEffect.textureCubeMap.name = self.cubeMapInfo.name;
 	self.environmentEffect.xSize = 100.0f;
 	self.environmentEffect.ySize = 100.0f;
 	self.environmentEffect.zSize = 100.0f;
@@ -840,9 +862,13 @@ const NSTimeInterval kDiceMass			= 0.2;
 		pBoxBodies->at(i)->getCenterOfMassTransform().getOpenGLMatrix(objectTransform);
 		GLKMatrix4 objectTransformMatrix	= GLKMatrix4MakeWithArray(objectTransform);
 		
-		GLKMatrix4 cameraTransformMatrix	= GLKMatrix4MakeTranslation(0.0f, 0.0f, -30.0f);
+		GLKMatrix4 cameraTransformMatrix	= GLKMatrix4MakeTranslation(0.0f, 0.0f, -15.0f);
+//		GLKMatrix4 cameraTransformMatrix	= GLKMatrix4MakeTranslation(0.0f, 0.0f, -30.0f);
 		self.objectEffect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransformMatrix, objectTransformMatrix);
-		
+
+		GLKTextureInfo *aTexture =  (GLKTextureInfo *)self.textures[i];
+		self.objectEffect.texture2d0.name			= aTexture.name;
+
 		[self.objectEffect prepareToDraw];
 		glDrawArrays(GL_TRIANGLES, 0, 6*6);
 	}

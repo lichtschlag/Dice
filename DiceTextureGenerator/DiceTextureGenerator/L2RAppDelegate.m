@@ -32,9 +32,9 @@
 	NSMutableArray *textureArray = [NSMutableArray array];
 	
 	// piece each texture together from the six complete images
-	for (int iteratorX = 0 ; iteratorX < 4; iteratorX++)
+	for (int iteratorY = 0 ; iteratorY < 4; iteratorY++)
 	{
-		for (int iteratorY = 0 ; iteratorY < 4; iteratorY++)
+		for (int iteratorX = 0 ; iteratorX < 4; iteratorX++)
 		{
 			// texture files are 1024 * 1536
 			NSImage *texture = [NSImage imageWithSize:CGSizeMake(2 * stride, 3 * stride) flipped:NO drawingHandler:^BOOL(NSRect dstRect)
