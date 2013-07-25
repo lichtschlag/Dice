@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PiO-Ba-EFo">
-                                <rect key="frame" x="78" y="954" width="50" height="50"/>
+                                <rect key="frame" x="20" y="954" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Share">
@@ -25,21 +25,6 @@
                                 </state>
                                 <connections>
                                     <action selector="userDidTapShareButton:" destination="2" eventType="touchUpInside" id="DSM-Zu-t5P"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mQ4-Hz-29h">
-                                <rect key="frame" x="20" y="954" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Info">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="userDidTapInfoButton:" destination="2" eventType="touchUpInside" id="E3K-dV-sIP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -54,7 +39,6 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="infoButton" destination="mQ4-Hz-29h" id="jdi-rE-9aP"/>
                         <outlet property="shareButton" destination="PiO-Ba-EFo" id="PgL-Fn-tYU"/>
                     </connections>
                 </viewController>

@@ -26,39 +26,39 @@ GLfloat gCubeVertexData[6*6*8] =
     1.0f, 1.0f,-1.0f,         1.0f, 0.0f, 0.0f,			0.499f, 0.333f,
     1.0f, 1.0f, 1.0f,         1.0f, 0.0f, 0.0f,			0.000f, 0.333f,
 	
-     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.000f, 0.333f,	// TOP FACE
+     1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			1.000f, 0.333f,		// TOP FACE
     -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.501f, 0.333f,
      1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.000f, 0.0f,
      1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			1.000f, 0.0f,
     -1.0f, 1.0f,-1.0f,        0.0f, 1.0f, 0.0f,			0.501f, 0.333f,
     -1.0f, 1.0f, 1.0f,        0.0f, 1.0f, 0.0f,			0.501f, 0.0f,
     
-    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.000f, 0.666f,	// LEFT FACE
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.000f, 0.334f,
+    -1.0f, 1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.000f, 0.666f,		// LEFT FACE
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.000f, 0.3343f,
     -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.499f, 0.666f,
     -1.0f, 1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.499f, 0.666f,
-    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.000f, 0.334f,
-    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.499f, 0.334f,
+    -1.0f,-1.0f,-1.0f,			-1.0f, 0.0f, 0.0f,		0.000f, 0.3343f,
+    -1.0f,-1.0f, 1.0f,			-1.0f, 0.0f, 0.0f,		0.499f, 0.3343f,
     
-    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		0.501f, 0.334f,	// BOTTOM FACE
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.000f, 0.334f,
+    -1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		0.501f, 0.3343f,	// BOTTOM FACE
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.000f, 0.3343f,
     -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.501f, 0.666f,
     -1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		0.501f, 0.666f,
-     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.000f, 0.334f,
+     1.0f, -1.0f,-1.0f,        0.0f, -1.0f, 0.0f,		1.000f, 0.3343f,
      1.0f, -1.0f, 1.0f,        0.0f, -1.0f, 0.0f,		1.000f, 0.666f,
     
      1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.499f, 1.0f,		// FRONT FACE
     -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.000f, 1.0f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.499f, 0.667f,
-     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.499f, 0.667f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.499f, 0.6676f,
+     1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.499f, 0.6676f,
     -1.0f, 1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.000f, 1.0f,
-    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.000f, 0.667f,
+    -1.0f,-1.0f, 1.0f,			0.0f, 0.0f, 1.0f,		0.000f, 0.6676f,
     
-	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.501f, 0.667f,	// BACK FACE
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.000f, 0.667f,
+	 1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.501f, 0.6676f,	// BACK FACE
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.000f, 0.6676f,
 	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.501f, 1.0f,
 	 1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		0.501f, 1.0f,
-	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.000f, 0.667f,
+	-1.0f,-1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.000f, 0.6676f,
 	-1.0f, 1.0f, -1.0f,       0.0f, 0.0f, -1.0f,		1.000f, 1.0f
 };
 
@@ -355,7 +355,12 @@ const NSTimeInterval kDiceMass			= 0.2;
 		for (int i = 0; i < self.diceNumber; i++)
 		{
 			btRigidBody* boxBody = pBoxBodies->at(i);
+
+			btMotionState* oldMotionState = 	pBoxBodies->at(i)->getMotionState();
+			delete oldMotionState;
+
 			pDynamicsWorld->removeRigidBody(boxBody);
+			delete boxBody;
 		}
 
 		pBoxBodies->clear();
@@ -397,6 +402,9 @@ const NSTimeInterval kDiceMass			= 0.2;
 		// add the body to the dynamics world
 		pDynamicsWorld->addRigidBody(boxBody);
 	}
+
+	// apparently one cannot delete it, leads to crashes.
+	//	delete boxShape;
 }
 
 
@@ -534,7 +542,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 			progress = ( secondsSinceAnimationStart / kAnimationDurationCompression );
 			[self animationSubStepWithTimeFactor:progress];
 			
-			animationHasEnded =  (progress > 1.0);
+			animationHasEnded =  (progress > 1.0f);
 			if (animationHasEnded)
 			{
 				self.currentState = L2RInteractionStateAnimatingMerge;
@@ -552,7 +560,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 			progress = ( secondsSinceAnimationStart / kAnimationDurationSplit );
 			[self animationSubStepWithTimeFactor:progress];
 			
-			animationHasEnded =  (progress > 1.0);
+			animationHasEnded =  (progress > 1.0f);
 			if (animationHasEnded)
 			{
 				self.currentState = L2RInteractionStateAnimatingUpRotate;
@@ -593,7 +601,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 			progress = ( secondsSinceAnimationStart / kAnimationDurationSplit );
 			[self animationSubStepWithTimeFactor:progress];
 			
-			animationHasEnded =  (progress > 1.0);
+			animationHasEnded =  (progress > 1.0f);
 			if (animationHasEnded)
 			{
 				self.currentState = L2RInteractionStateAnimatingDownRotate;
@@ -634,7 +642,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 			progress = ( secondsSinceAnimationStart / kAnimationDurationSplit );
 			[self animationSubStepWithTimeFactor:progress];
 			
-			animationHasEnded =  (progress > 1.0);
+			animationHasEnded =  (progress > 1.0f);
 			if (animationHasEnded)
 			{
 				self.currentState = L2RInteractionStateAnimatingLeftRotate;
@@ -720,7 +728,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 			progress = ( secondsSinceAnimationStart / kAnimationDurationRotation );
 			[self animationSubStepWithTimeFactor:progress];
 			
-			animationHasEnded =  (progress > 1.0);
+			animationHasEnded =  (progress > 1.0f);
 			if (animationHasEnded)
 			{
 				self.currentState = L2RInteractionStateAnimatingMerge;
@@ -734,7 +742,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 			progress = ( secondsSinceAnimationStart / kAnimationDurationMerge );
 			[self animationSubStepWithTimeFactor:progress];
 			
-			animationHasEnded =  (progress > 1.0);
+			animationHasEnded =  (progress > 1.0f);
 			if (animationHasEnded)
 			{
 				self.currentState = L2RInteractionStateNormal;
@@ -771,7 +779,9 @@ const NSTimeInterval kDiceMass			= 0.2;
 		objectTransform.setFromOpenGLMatrix(middleOfAnimationTransform.m);
 		
 		btDefaultMotionState* myMotionState = new btDefaultMotionState(objectTransform);
+		btMotionState* oldMotionState = 	pBoxBodies->at(i)->getMotionState();
 		pBoxBodies->at(i)->setMotionState(myMotionState);
+		delete oldMotionState;
 	}
 }
 
@@ -779,7 +789,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 - (void) computeGravity
 {
 	// get two vectors: gravity and current motion
-	float alpha = 0.1;
+	float alpha = 0.1f;
 	double motion[3] = {0,0,0};
 	CMAccelerometerData *newestAccel = self.motionManager.accelerometerData;
 	if (firstAccelerometerData)
@@ -799,11 +809,11 @@ const NSTimeInterval kDiceMass			= 0.2;
 	motion[1]	= newestAccel.acceleration.y - gravity[1];
 	motion[2]	= newestAccel.acceleration.z - gravity[2];
 	
-	float gScaling = 0.0;			// still, should fall down as if the device was helt in portrait
-	float mScaling = 300.0;		// emphasize changes a bit more, so that we notice it more
+	float gScaling = 0.0f;			// still, should fall down as if the device was helt in portrait
+	float mScaling = 300.0f;		// emphasize changes a bit more, so that we notice it more
 	pDynamicsWorld->setGravity( btVector3(gScaling * gravity[0] + mScaling *motion[0],
-										  gScaling * gravity[1] + mScaling *motion[1] - 10.0,
-										  gScaling * gravity[2] + mScaling *motion[2]));
+										  gScaling * gravity[1] + mScaling *motion[1] -  2.0f,
+										  gScaling * gravity[2] + mScaling *motion[2] - 10.0f));
 }
 
 
@@ -1042,7 +1052,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 	CGContextFillRect(context, CGRectMake(0, 0, width, width));
 	
 	[foregroundColor set];
-	CGContextSetShadowWithColor(context, CGSizeMake(0,0), 6.0, foregroundColor.CGColor);
+	CGContextSetShadowWithColor(context, CGSizeMake(0,0), 6.0f, foregroundColor.CGColor);
 	
 	CGPathRef roundedRectPath = [self newPathForRoundedRect:CGRectInset(CGRectMake(0, 0, width, width),5,5) radius:radius];
 	CGContextAddPath(context, roundedRectPath);
@@ -1056,6 +1066,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 	UIGraphicsPopContext();
 	UIImage *tempImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
+	
+	CGPathRelease(roundedRectPath);
 	
 	return [tempImage resizableImageWithCapInsets:UIEdgeInsetsMake(radius +6, radius +6, radius +6, radius +6)];
 }
@@ -1106,6 +1118,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 {
 	MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
 	mailViewController.mailComposeDelegate = self;
+	mailViewController.modalPresentationStyle = UIModalPresentationFormSheet;
 	
 	[mailViewController setSubject:@"We should hire Leonhard."];
 	
@@ -1151,7 +1164,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 {
 	self.currentFacePositions = [NSMutableArray array];
 	
-	btVector3 rotationAxis = btVector3(0.0, 1.0, 0.0);
+	btVector3 rotationAxis = btVector3(0.0f, 1.0f, 0.0f);
 	btQuaternion rotationAsQuarterion;
 
 	// for the multistep animations the animations will have three endPositions:
@@ -1162,6 +1175,10 @@ const NSTimeInterval kDiceMass			= 0.2;
 									   || self.currentState == L2RInteractionStateAnimatingRightRotate
 									   || self.currentState == L2RInteractionStateAnimatingLeftSplit
 									   || self.currentState == L2RInteractionStateAnimatingLeftRotate
+									   || self.currentState == L2RInteractionStateAnimatingUpSplit
+									   || self.currentState == L2RInteractionStateAnimatingUpRotate
+									   || self.currentState == L2RInteractionStateAnimatingDownSplit
+									   || self.currentState == L2RInteractionStateAnimatingDownRotate
 									   || self.currentState == L2RInteractionStateAnimatingCompression
 									   );
 	
@@ -1169,6 +1186,10 @@ const NSTimeInterval kDiceMass			= 0.2;
 									   || self.currentState == L2RInteractionStateAnimatingUpRotate
 									   || self.currentState == L2RInteractionStateAnimatingDownSplit
 									   || self.currentState == L2RInteractionStateAnimatingDownRotate
+									   || self.currentState == L2RInteractionStateAnimatingRightSplit
+									   || self.currentState == L2RInteractionStateAnimatingRightRotate
+									   || self.currentState == L2RInteractionStateAnimatingLeftSplit
+									   || self.currentState == L2RInteractionStateAnimatingLeftRotate
 									   || self.currentState == L2RInteractionStateAnimatingCompression
 									   );
 
@@ -1181,7 +1202,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 	switch (self.currentFace)
 	{
 		case L2RBoxFaceFront:
-			rotationAsQuarterion = btQuaternion(rotationAxis, 0.0);
+			rotationAsQuarterion = btQuaternion(rotationAxis, 0.0f);
 			break;
 		case L2RBoxFaceBack:
 			rotationAsQuarterion = btQuaternion(rotationAxis,  M_PI);
@@ -1193,11 +1214,11 @@ const NSTimeInterval kDiceMass			= 0.2;
 			rotationAsQuarterion = btQuaternion(rotationAxis,  M_PI_2);
 			break;
 		case L2RBoxFaceTop:
-			rotationAxis = btVector3(1.0, 0.0, 0.0);
+			rotationAxis = btVector3(1.0f, 0.0f, 0.0f);
 			rotationAsQuarterion = btQuaternion(rotationAxis,  M_PI_2);
 			break;
 		case L2RBoxFaceBottom:
-			rotationAxis = btVector3(1.0, 0.0, 0.0);
+			rotationAxis = btVector3(1.0f, 0.0f, 0.0f);
 			rotationAsQuarterion = btQuaternion(rotationAxis, -M_PI_2);
 			break;
 			
@@ -1216,8 +1237,8 @@ const NSTimeInterval kDiceMass			= 0.2;
 		objectTransform.setIdentity();
 		div_t division = div(i, 4);
 		objectTransform.setRotation(rotationAsQuarterion);
-		objectTransform.setOrigin( btVector3(division.rem  * strideX - 1.5*strideX,
-											 division.quot * strideY - 1.5*strideY,
+		objectTransform.setOrigin( btVector3(division.rem  * strideX - 1.5f*strideX,
+											 division.quot * strideY - 1.5f*strideY,
 											 4.0f) );
 
 		float objectTransformData[16];		// helper data object
@@ -1265,7 +1286,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 GLKMatrix4 GLKMatrix4GetRotation(GLKMatrix4 matrix)
 {
 	GLKMatrix4 returnMatrix = matrix;
-	GLKMatrix4SetColumn(returnMatrix, 3, GLKVector4Make(0, 0, 0, 1));
+	GLKMatrix4SetColumn(returnMatrix, 3, GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f));
 	return returnMatrix;
 }
 
