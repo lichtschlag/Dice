@@ -908,7 +908,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 //	// now render all the dice so we'll kno which one to pick
 ////	[self render:DM_SELECT];
 //	
-//	CGFloat scale = UIScreen.mainScreen.scale;		// todo maybe call glkview's property instead
+//	CGFloat scale = UIScreen.mainScreen.scale;
 //	Byte returnedPixelColor[4] = {0, 0, 0, 0};
 //	glReadPixels(pointInView.x * scale,
 //				 (height - (pointInView.y * scale)),
@@ -1268,7 +1268,6 @@ const NSTimeInterval kDiceMass			= 0.2;
 	GLKVector4 middleTranslation= GLKVector4Lerp(startTranslation, endTranslation, progress);
 	
 	// interpolate between the rotational part with a SLERP
-	// TODO: test if I do need to the reduction beforehand
 	GLKQuaternion startQuart	= GLKQuaternionMakeWithMatrix4(startTransform);
 	GLKQuaternion endQuart		= GLKQuaternionMakeWithMatrix4(endTransform);
 	
@@ -1286,7 +1285,7 @@ const NSTimeInterval kDiceMass			= 0.2;
 GLKMatrix4 GLKMatrix4GetRotation(GLKMatrix4 matrix)
 {
 	GLKMatrix4 returnMatrix = matrix;
-	GLKMatrix4SetColumn(returnMatrix, 3, GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f));
+	GLKMatrix4SetColumn(returnMatrix, 3, GLKVector4Make(0.0f, 0.0f, 0.0f, 0.8f));
 	return returnMatrix;
 }
 
