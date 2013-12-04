@@ -10,6 +10,7 @@
 		3F2135DF150104DE007048C4 /* EnvironmentCubeMap.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F2135DE150104DE007048C4 /* EnvironmentCubeMap.jpg */; };
 		3F57A51014FD4F5B002F8D3F /* DiceSidesWoW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */; };
 		3F7ACD2A14FD11930033A7E7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7ACD2914FD11930033A7E7 /* CoreMotion.framework */; };
+		3F9F0161180C3B6400C91DB3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9F0160180C3B6400C91DB3 /* Default-568h@2x.png */; };
 		3FB3A7FD14FEC74A0007CA0C /* DiceSides.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */; };
 		3FDCF56214F7F74800FB639B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56114F7F74800FB639B /* UIKit.framework */; };
 		3FDCF56414F7F74800FB639B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDCF56314F7F74800FB639B /* Foundation.framework */; };
@@ -162,6 +163,7 @@
 		3F2135DE150104DE007048C4 /* EnvironmentCubeMap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = EnvironmentCubeMap.jpg; sourceTree = "<group>"; };
 		3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DiceSidesWoW.jpg; sourceTree = "<group>"; };
 		3F7ACD2914FD11930033A7E7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		3F9F0160180C3B6400C91DB3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DiceSides.jpg; sourceTree = "<group>"; };
 		3FDCF55D14F7F74800FB639B /* DiceMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FDCF56114F7F74800FB639B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -576,6 +578,7 @@
 		3FDCF58A14F7F82700FB639B /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				3F9F0160180C3B6400C91DB3 /* Default-568h@2x.png */,
 				3FFFDCAB17A1A3AA000A3F3D /* App Icon */,
 				3FB3A7FC14FEC74A0007CA0C /* DiceSides.jpg */,
 				3F57A50F14FD4F5B002F8D3F /* DiceSidesWoW.jpg */,
@@ -1104,6 +1107,7 @@
 				3FFFDCB917A1A3AA000A3F3D /* Icon-Small-50@2x.png in Resources */,
 				3F57A51014FD4F5B002F8D3F /* DiceSidesWoW.jpg in Resources */,
 				3FB3A7FD14FEC74A0007CA0C /* DiceSides.jpg in Resources */,
+				3F9F0161180C3B6400C91DB3 /* Default-568h@2x.png in Resources */,
 				3F2135DF150104DE007048C4 /* EnvironmentCubeMap.jpg in Resources */,
 				3FFFDCBF17A1A3AA000A3F3D /* iTunesArtwork@2x.png in Resources */,
 				3FFFDCB717A1A3AA000A3F3D /* Icon-76@2x.png in Resources */,
